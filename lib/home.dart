@@ -27,10 +27,10 @@ class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
 
   final pages = [
-    const Page1(),
-    const Page2(),
-    const Page3(),
-    const Page4(),
+    const Home(),
+    const Chat(),
+    const History(),
+    const Profile(),
   ];
 
   @override
@@ -164,8 +164,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Page1 extends StatelessWidget {
-  const Page1({Key? key}) : super(key: key);
+class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -185,8 +185,8 @@ class Page1 extends StatelessWidget {
   }
 }
 
-class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
+class Chat extends StatelessWidget {
+  const Chat({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -374,8 +374,8 @@ class Page2 extends StatelessWidget {
   }
 }
 
-class Page3 extends StatelessWidget {
-  const Page3({Key? key}) : super(key: key);
+class History extends StatelessWidget {
+  const History({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -736,8 +736,8 @@ class Page3 extends StatelessWidget {
   }
 }
 
-class Page4 extends StatelessWidget {
-  const Page4({Key? key}) : super(key: key);
+class Profile extends StatelessWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
