@@ -40,7 +40,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 247, 246, 255),
         title: Row(
-          //children align to center.
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
@@ -52,23 +51,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        //menu icon
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          onPressed: () {},
-        ),
         actions: [
-          //search icon
           IconButton(
             icon: Icon(
               Icons.add_shopping_cart,
               color: Colors.black,
             ),
             onPressed: () {},
-          )
+          ),
         ],
       ),
       body: pages[pageIndex],
