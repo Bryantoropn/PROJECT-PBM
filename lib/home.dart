@@ -173,7 +173,7 @@ class Page1 extends StatelessWidget {
       color: const Color(0xffC4DFCB),
       child: Center(
         child: Text(
-          "Page Number 1",
+          "HOMEEEEEE",
           style: TextStyle(
             color: Colors.green[900],
             fontSize: 45,
