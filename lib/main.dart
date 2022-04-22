@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:per4/registrasi.dart';
 
-import 'BottomNavigationBar1.dart';
+import 'NavBar.dart';
 
 void main() {
   runApp(MyApp());
