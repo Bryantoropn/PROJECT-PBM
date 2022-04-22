@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
 import 'package:per4/home.dart';
-import 'package:per4/bottomNav.dart';
 
 class MyHistory extends StatelessWidget {
   const MyHistory({Key? key}) : super(key: key);
@@ -10,7 +9,6 @@ class MyHistory extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: History(),
-      bottomNavigationBar: buildMyNavBar(context),
     );
   }
 }

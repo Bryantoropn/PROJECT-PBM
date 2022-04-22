@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
 import 'package:per4/home.dart';
-import 'package:per4/bottomNav.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -10,7 +9,6 @@ class MyProfile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Profile(),
-      bottomNavigationBar: buildMyNavBar(context),
     );
   }
 }

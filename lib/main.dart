@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:per4/registrasi.dart';
-import 'package:per4/home.dart';
-import 'package:per4/chat.dart';
+
+import 'BottomNavigationBar1.dart';
 
 void main() {
   runApp(MyApp());
@@ -84,7 +84,7 @@ class myLogin extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyHomePage()));
+                            builder: (context) => const BottomWidget()));
                   },
                 ),
               ),

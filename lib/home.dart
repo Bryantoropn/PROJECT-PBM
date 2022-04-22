@@ -3,7 +3,6 @@ import 'package:per4/history.dart';
 import 'package:per4/main.dart';
 import 'package:per4/chat.dart';
 import 'package:per4/profil.dart';
-import 'package:per4/bottomNav.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -13,7 +12,6 @@ class MyHomePage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 247, 246, 255),
       appBar: AppBar(),
       body: const Home(),
-      bottomNavigationBar: buildMyNavBar(context),
     );
   }
 }
