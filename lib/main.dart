@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:per4/registrasi.dart';
 import 'package:per4/home.dart';
+import 'package:per4/chat.dart';
 
 void main() {
   runApp(MyApp());
@@ -83,7 +84,7 @@ class myLogin extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const HomePage()));
+                            builder: (context) => const MyHomePage()));
                   },
                 ),
               ),
