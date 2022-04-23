@@ -10,7 +10,51 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 246, 255),
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          Container(
+            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: IconButton(
+              icon: Icon(Icons.qr_code_2_rounded),
+              iconSize: 30,
+              onPressed: () {},
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.shopping_basket),
+              iconSize: 30,
+            ),
+          )
+        ],
+        backgroundColor: Colors.black,
+        toolbarHeight: 100,
+        elevation: 6,
+        flexibleSpace: Container(
+          child: Container(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                  'image/appbar.png',
+                ),
+                fit: BoxFit.cover),
+          ),
+        ),
+        bottom: PreferredSize(
+            child: Transform(
+              transform: Matrix4.translationValues(-100.0, -40.0, 0.0),
+              child: Text(
+                'MAEMS APP',
+                style: TextStyle(
+                    fontSize: 45,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+            preferredSize: Size.fromHeight(125)),
+      ),
       body: const Home(),
     );
   }
@@ -28,6 +72,7 @@ class Home extends StatelessWidget {
           // SEARCH LINE ========================================
           Container(
             margin: EdgeInsets.all(25),
+            alignment: Alignment.center,
             child: Align(
               alignment: Alignment.topLeft,
               child: Column(
@@ -94,10 +139,10 @@ class Home extends StatelessWidget {
                 children: [
                   Text('MENU'),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        margin: EdgeInsets.fromLTRB(0, 20, 20, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -119,7 +164,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        margin: EdgeInsets.fromLTRB(20, 20, 0, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -143,10 +188,10 @@ class Home extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        margin: EdgeInsets.fromLTRB(0, 20, 20, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -168,7 +213,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        margin: EdgeInsets.fromLTRB(20, 20, 0, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -198,7 +243,7 @@ class Home extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
             padding: EdgeInsetsDirectional.all(20),
             height: 162,
-            width: 439,
+            width: 4390,
             decoration:
                 BoxDecoration(color: Color.fromARGB(255, 255, 255, 255)),
             child: Column(
@@ -220,10 +265,10 @@ class Home extends StatelessWidget {
                 ),
                 Container(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 40, 0),
+                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
                         height: 47.76,
                         width: 119,
                         decoration: BoxDecoration(
@@ -245,7 +290,29 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 40, 0),
+                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                        height: 57.76,
+                        width: 149,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromARGB(255, 197, 197, 197),
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2))
+                            ],
+                            color: Color.fromARGB(255, 236, 246, 255),
+                            image: DecorationImage(
+                                image: AssetImage('image/SoftChocoCream.png'),
+                                fit: BoxFit.cover)),
+                        child: InkWell(
+                          onTap: () {},
+                          customBorder: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
                         height: 47.76,
                         width: 119,
                         decoration: BoxDecoration(
