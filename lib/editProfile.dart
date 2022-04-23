@@ -74,7 +74,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Text(
                     "Nama",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 SizedBox(
@@ -98,7 +98,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Text(
                     "Email",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 SizedBox(
@@ -122,7 +122,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   padding: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Text(
                     "No. Hp",
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
                 SizedBox(
@@ -148,7 +148,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                       initialValue: '',
                       firstDate: DateTime(1950),
                       lastDate: DateTime(2100),
-                      dateLabelText: 'Date',
+                      dateLabelText: 'Tanggal lahir',
                       onChanged: (val) => print(val),
                       validator: (val) {
                         print(val);
