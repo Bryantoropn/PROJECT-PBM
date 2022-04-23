@@ -7,7 +7,26 @@ class MyProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 247, 246, 255),
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "MAEMS APP",
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.add_shopping_cart),
+            color: Colors.black,
+          )
+        ],
+      ),
       body: Profile(),
     );
   }

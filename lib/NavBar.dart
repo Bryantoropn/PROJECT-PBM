@@ -36,8 +36,9 @@ class _BottomWidgetState extends State<BottomWidget> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedLabelStyle: TextStyle(color: Colors.black),
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: Colors.black,
+        selectedLabelStyle: TextStyle(color: Colors.black,fontSize: 14),
+        showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem( 
             icon: Icon(Icons.home_outlined, color: Colors.black,),
@@ -62,7 +63,7 @@ class _BottomWidgetState extends State<BottomWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped,
       ),
     );
