@@ -36,33 +36,34 @@ class _BottomWidgetState extends State<BottomWidget> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedLabelStyle: TextStyle(color: Colors.black),
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: TextStyle(color: Colors.black,fontSize: 14),
+        showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem( 
-            icon: Icon(Icons.home_outlined, color: Colors.black,),
-            activeIcon: Icon(Icons.home,color: Colors.black,),
+            icon: Icon(Icons.home_filled, color: Colors.grey,),
+            activeIcon: Icon(Icons.home_filled,color: Colors.black,),
             label: "home", 
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message_outlined, color: Colors.black,),
+            icon: Icon(Icons.message, color: Colors.grey,),
             activeIcon: Icon(Icons.message, color: Colors.black),
             label: 'Message',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history_outlined, color: Colors.black,),
-            activeIcon: Icon(Icons.history_toggle_off, color: Colors.black),
+            icon: Icon(Icons.history, color: Colors.grey,),
+            activeIcon: Icon(Icons.history, color: Colors.black),
             label: 'History',
             
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline, color: Colors.black,),
+            icon: Icon(Icons.person, color: Colors.grey,),
             activeIcon: Icon(Icons.person, color: Colors.black),
             label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped,
       ),
     );
