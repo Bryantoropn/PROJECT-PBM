@@ -66,6 +66,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+        child: Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -135,14 +136,13 @@ class Home extends StatelessWidget {
           Container(
               margin: EdgeInsets.fromLTRB(40, 0, 25, 0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('MENU'),
+                  SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 20, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -164,7 +164,6 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(20, 20, 0, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -187,11 +186,11 @@ class Home extends StatelessWidget {
                       ),
                     ],
                   ),
+                  SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 20, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -213,7 +212,6 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(20, 20, 0, 0),
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
@@ -271,28 +269,6 @@ class Home extends StatelessWidget {
                         margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
                         height: 47.76,
                         width: 119,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(255, 197, 197, 197),
-                                  blurRadius: 6,
-                                  offset: Offset(0, 2))
-                            ],
-                            color: Color.fromARGB(255, 236, 246, 255),
-                            image: DecorationImage(
-                                image: AssetImage('image/SoftChocoCream.png'),
-                                fit: BoxFit.cover)),
-                        child: InkWell(
-                          onTap: () {},
-                          customBorder: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                        height: 57.76,
-                        width: 149,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             boxShadow: [
@@ -417,6 +393,6 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 }
