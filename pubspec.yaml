@@ -61,6 +61,11 @@ flutter:
   assets:
    - ./images/logo.png
    - ./image/nasgor.png
+   - ./image/MenuBestSeller.png
+   - ./image/MenuFullMeal.png
+   - ./image/MenuPromo.png
+   - ./image/MenuReservasi.png
+   - ./image/SoftChocoCream.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

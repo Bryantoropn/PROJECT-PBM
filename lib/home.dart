@@ -31,6 +31,7 @@ class Home extends StatelessWidget {
             child: Align(
               alignment: Alignment.topLeft,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
                       alignment: Alignment.topLeft,
@@ -89,10 +90,11 @@ class Home extends StatelessWidget {
           Container(
               margin: EdgeInsets.fromLTRB(40, 0, 25, 0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('MENU'),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -108,7 +110,7 @@ class Home extends StatelessWidget {
                             ],
                             color: Color.fromARGB(255, 236, 246, 255),
                             image: DecorationImage(
-                                image: AssetImage('assets/1.png'),
+                                image: AssetImage('image/MenuFullMeal.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
                           onTap: () {},
@@ -130,7 +132,7 @@ class Home extends StatelessWidget {
                             ],
                             color: Color.fromARGB(255, 236, 246, 255),
                             image: DecorationImage(
-                                image: AssetImage('assets/1.png'),
+                                image: AssetImage('image/MenuBestSeller.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
                           onTap: () {},
@@ -141,7 +143,7 @@ class Home extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -157,7 +159,7 @@ class Home extends StatelessWidget {
                             ],
                             color: Color.fromARGB(255, 236, 246, 255),
                             image: DecorationImage(
-                                image: AssetImage('assets/1.png'),
+                                image: AssetImage('image/MenuPromo.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
                           onTap: () {},
@@ -179,7 +181,7 @@ class Home extends StatelessWidget {
                             ],
                             color: Color.fromARGB(255, 236, 246, 255),
                             image: DecorationImage(
-                                image: AssetImage('assets/1.png'),
+                                image: AssetImage('image/MenuReservasi.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
                           onTap: () {},
@@ -234,7 +236,7 @@ class Home extends StatelessWidget {
                             ],
                             color: Color.fromARGB(255, 236, 246, 255),
                             image: DecorationImage(
-                                image: AssetImage('assets/1.png'),
+                                image: AssetImage('image/SoftChocoCream.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
                           onTap: () {},
@@ -256,7 +258,7 @@ class Home extends StatelessWidget {
                             ],
                             color: Color.fromARGB(255, 236, 246, 255),
                             image: DecorationImage(
-                                image: AssetImage('assets/1.png'),
+                                image: AssetImage('image/SoftChocoCream.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
                           onTap: () {},
