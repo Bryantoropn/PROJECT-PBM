@@ -44,7 +44,7 @@ class MyHomePage extends StatelessWidget {
         ),
         bottom: PreferredSize(
             child: Transform(
-              transform: Matrix4.translationValues(-100.0, -40.0, 0.0),
+              transform: Matrix4.translationValues(-40.0, -40.0, 0.0),
               child: Text(
                 'MAEMS APP',
                 style: TextStyle(
