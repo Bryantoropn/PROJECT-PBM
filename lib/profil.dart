@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per4/editProfile.dart';
 import 'package:per4/main.dart';
 import 'package:per4/home.dart';
 
@@ -97,7 +98,8 @@ class Profile extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.bold),
                       ),
-                      onPressed: () {},
+                      onPressed: () {Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EditProfile()));}
                     ),
                   )
                 ],

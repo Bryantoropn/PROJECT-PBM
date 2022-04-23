@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:per4/main.dart';
-import 'package:per4/home.dart';
 
 class MyHistory extends StatelessWidget {
   const MyHistory({Key? key}) : super(key: key);
