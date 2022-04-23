@@ -95,7 +95,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Text(
                     "Email",
                     style: TextStyle(fontSize: 14),
@@ -119,7 +119,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Text(
                     "No. Hp",
                     style: TextStyle(fontSize: 14),
