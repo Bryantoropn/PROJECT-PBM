@@ -14,11 +14,18 @@ class MyChat extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("MAEMS APP", style: TextStyle(color: Colors.black),),
+            Text(
+              "MAEMS APP",
+              style: TextStyle(color: Colors.black),
+            ),
           ],
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.add_shopping_cart), color: Colors.black,)
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.add_shopping_cart),
+            color: Colors.black,
+          )
         ],
       ),
       body: Chat(),
@@ -31,8 +38,8 @@ class Chat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(15),
+    return SingleChildScrollView(
+        padding: EdgeInsets.all(10),
         child: Column(
           children: [
             Align(
@@ -66,46 +73,19 @@ class Chat extends StatelessWidget {
               height: 15,
               thickness: 1,
             ),
-            Container(
-              padding: EdgeInsets.all(5),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                          maxRadius: 25,
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Mr. Maemes",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text("You have a message.....")
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    "Today",
-                    style: TextStyle(fontSize: 12),
-                  )
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              leading: CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 196, 196, 196),
+                maxRadius: 25,
               ),
+              title: const Text(
+                'Mr. Maems',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              subtitle:
+                  Text("You have a message...", style: TextStyle(fontSize: 12)),
+              trailing: Text("16:30"),
             ),
             Divider(
               color: Color.fromARGB(255, 196, 196, 196),
@@ -114,46 +94,19 @@ class Chat extends StatelessWidget {
               indent: 70,
               endIndent: 10,
             ),
-            Container(
-              padding: EdgeInsets.all(5),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                          maxRadius: 25,
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Mr. Maemes",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text("You have a message.....")
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    "Yesterday",
-                    style: TextStyle(fontSize: 12),
-                  )
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              leading: CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 196, 196, 196),
+                maxRadius: 25,
               ),
+              title: const Text(
+                'Mr. Maems',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              subtitle:
+                  Text("You have a message...", style: TextStyle(fontSize: 12)),
+              trailing: Text("Yesterday"),
             ),
             Divider(
               color: Color.fromARGB(255, 196, 196, 196),
@@ -162,46 +115,19 @@ class Chat extends StatelessWidget {
               indent: 70,
               endIndent: 10,
             ),
-            Container(
-              padding: EdgeInsets.all(5),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                          maxRadius: 25,
-                        ),
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Mr. Maemes",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text("You have a message.....")
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    "20/03/2022",
-                    style: TextStyle(fontSize: 12),
-                  )
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              leading: CircleAvatar(
+                backgroundColor: Color.fromARGB(255, 196, 196, 196),
+                maxRadius: 25,
               ),
+              title: const Text(
+                'Mr. Maems',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              subtitle:
+                  Text("You have a message...", style: TextStyle(fontSize: 12)),
+              trailing: Text("16/03/2022"),
             ),
             Divider(
               color: Color.fromARGB(255, 196, 196, 196),

@@ -90,18 +90,21 @@ class Profile extends StatelessWidget {
                     minWidth: 14,
                     height: 20,
                     child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
-                      textColor: Colors.black,
-                      color: Colors.white,
-                      child: Text(
-                        "Edit",
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.bold),
-                      ),
-                      onPressed: () {Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EditProfile()));}
-                    ),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        textColor: Colors.black,
+                        color: Colors.white,
+                        child: Text(
+                          "Edit",
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditProfile()));
+                        }),
                   )
                 ],
               ),
@@ -184,42 +187,19 @@ class Profile extends StatelessWidget {
               height: 5,
               thickness: 6,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "PIN Settings",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              title: const Text(
+                'PIN Settings',
+                style: TextStyle(fontSize: 15),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 16,
+                ),
+                onPressed: () {},
               ),
             ),
             Divider(
@@ -229,42 +209,19 @@ class Profile extends StatelessWidget {
               indent: 12,
               endIndent: 10,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Language",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              title: const Text(
+                'Language',
+                style: TextStyle(fontSize: 15),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 16,
+                ),
+                onPressed: () {},
               ),
             ),
             Divider(
@@ -274,42 +231,19 @@ class Profile extends StatelessWidget {
               indent: 12,
               endIndent: 10,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Invite Friends",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              title: const Text(
+                'Invite Friends',
+                style: TextStyle(fontSize: 15),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 16,
+                ),
+                onPressed: () {},
               ),
             ),
             Divider(
@@ -317,42 +251,19 @@ class Profile extends StatelessWidget {
               height: 5,
               thickness: 6,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Terms of Service",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              title: const Text(
+                'Terms of Service',
+                style: TextStyle(fontSize: 15),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 16,
+                ),
+                onPressed: () {},
               ),
             ),
             Divider(
@@ -362,42 +273,19 @@ class Profile extends StatelessWidget {
               indent: 12,
               endIndent: 10,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Privacy Policy",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              title: const Text(
+                'Privacy Policy',
+                style: TextStyle(fontSize: 15),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 16,
+                ),
+                onPressed: () {},
               ),
             ),
             Divider(
@@ -407,42 +295,19 @@ class Profile extends StatelessWidget {
               indent: 12,
               endIndent: 10,
             ),
-            Container(
-              padding: EdgeInsets.only(left: 10, right: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Help Center",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
+            ListTile(
+              contentPadding: EdgeInsets.only(right: 4, left: 4),
+              title: const Text(
+                'Help Center',
+                style: TextStyle(fontSize: 15),
+              ),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 16,
+                ),
+                onPressed: () {},
               ),
             ),
             Divider(

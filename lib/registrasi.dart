@@ -80,10 +80,24 @@ class RegistrasiPage extends StatelessWidget {
                     "Register",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyHomePage()));
-                  },
+                  onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                            content: const Text(
+                                'Akun berhasil ditambahkan'),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              myLogin()));
+                                },
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          )),
                 ),
               ),
               Container(

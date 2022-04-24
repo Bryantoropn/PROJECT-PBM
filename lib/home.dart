@@ -31,7 +31,7 @@ class MyHomePage extends StatelessWidget {
           )
         ],
         backgroundColor: Colors.black,
-        toolbarHeight: 100,
+        toolbarHeight: 50,
         elevation: 6,
         flexibleSpace: Container(
           child: Container(),
