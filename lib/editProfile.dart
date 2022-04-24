@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:per4/NavBar.dart';
+import 'package:per4/NavBarProf.dart';
 import 'package:per4/profil.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
@@ -35,7 +37,7 @@ class _EditProfileState extends State<EditProfile> {
         leading: IconButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => MyProfile()));
+                context, MaterialPageRoute(builder: (context) => BottomWidgetProf()));
           },
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
@@ -184,7 +186,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => MyProfile()));
+                                      builder: (context) => BottomWidgetProf()));
                             },
                             child: const Text('OK'),
                           ),

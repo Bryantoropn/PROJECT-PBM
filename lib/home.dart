@@ -11,6 +11,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 246, 255),
       appBar: AppBar(
+        leading: Container(),
         actions: [
           Container(
             margin: EdgeInsets.fromLTRB(10, 0, 10, 0),

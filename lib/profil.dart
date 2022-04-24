@@ -9,6 +9,7 @@ class MyProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Container(),
         backgroundColor: Color.fromARGB(255, 247, 246, 255),
         centerTitle: true,
         title: Row(
