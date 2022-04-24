@@ -157,7 +157,42 @@ class _ProfileEditState extends State<ProfileEdit> {
                       onSaved: (val) => print(val),
                     )
                   ],
-                )
+                ),
+                Container(
+                  padding: EdgeInsets.only(left: 50, right: 50, top: 20),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    textColor: Colors.white,
+                    color: Color.fromARGB(255, 255, 89, 37),
+                    child: Text(
+                      "SIMPAN",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () => showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        content: const Text(
+                            'Apakah anda yakin untuk mengubah data?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyProfile()));
+                            },
+                            child: const Text('OK'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
