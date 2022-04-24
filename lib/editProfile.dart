@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:per4/NavBar.dart';
 import 'package:per4/NavBarProf.dart';
-import 'package:per4/profil.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
 class EditProfile extends StatefulWidget {
@@ -144,13 +142,20 @@ class _ProfileEditState extends State<ProfileEdit> {
                             borderSide: BorderSide(color: Colors.blue))),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, top: 10),
+                  child: Text(
+                    "Tanggal Lahir",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
                 Stack(
                   children: <Widget>[
                     DateTimePicker(
                       initialValue: '',
                       firstDate: DateTime(1950),
                       lastDate: DateTime(2100),
-                      dateLabelText: 'Tanggal lahir',
+                      dateLabelText: 'Pilih tanggal lahir',
                       onChanged: (val) => print(val),
                       validator: (val) {
                         print(val);
@@ -161,7 +166,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 50, right: 50, top: 20),
+                  padding: EdgeInsets.only(left: 130, right: 130, top: 30),
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
