@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:per4/main.dart';
-import 'package:per4/home.dart';
 
 class MyChat extends StatelessWidget {
   const MyChat({Key? key}) : super(key: key);

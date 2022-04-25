@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:per4/registrasi.dart';
-
 import 'NavBar.dart';
 
 void main() {

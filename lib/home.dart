@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:per4/history.dart';
-import 'package:per4/main.dart';
-import 'package:per4/chat.dart';
-import 'package:per4/profil.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
-import 'package:per4/home.dart';
 
 class RegistrasiPage extends StatelessWidget {
   const RegistrasiPage({Key? key}) : super(key: key);
