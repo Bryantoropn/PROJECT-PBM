@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
+import 'package:per4/topUp.dart';
 import 'NavBarProf.dart';
 
 class konfirmTopUp extends StatelessWidget {
@@ -198,7 +199,27 @@ class konfirmTopUp extends StatelessWidget {
                           )
                         ],
                       ),
-                      onPressed: () {},
+                      onPressed: () => showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          content: const Text('Apakah anda yakin ?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => myTopUp()));
+                              },
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
