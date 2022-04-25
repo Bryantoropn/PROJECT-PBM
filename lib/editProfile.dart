@@ -34,8 +34,7 @@ class _EditProfileState extends State<EditProfile> {
         ],
         leading: IconButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => BottomWidgetProf()));
+            Navigator.pop(context);
           },
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
@@ -191,7 +190,8 @@ class _ProfileEditState extends State<ProfileEdit> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => BottomWidgetProf()));
+                                      builder: (context) =>
+                                          BottomWidgetProf()));
                             },
                             child: const Text('OK'),
                           ),

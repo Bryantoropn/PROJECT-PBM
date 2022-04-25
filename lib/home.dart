@@ -263,54 +263,79 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                        height: 47.76,
-                        width: 119,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(255, 197, 197, 197),
-                                  blurRadius: 6,
-                                  offset: Offset(0, 2))
-                            ],
-                            color: Color.fromARGB(255, 236, 246, 255),
-                            image: DecorationImage(
-                                image: AssetImage('image/SoftChocoCream.png'),
-                                fit: BoxFit.cover)),
-                        child: InkWell(
-                          onTap: () {},
-                          customBorder: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          height: 47.76,
+                          width: 119,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(255, 197, 197, 197),
+                                    blurRadius: 6,
+                                    offset: Offset(0, 2))
+                              ],
+                              color: Color.fromARGB(255, 236, 246, 255),
+                              image: DecorationImage(
+                                  image: AssetImage('image/SoftChocoCream.png'),
+                                  fit: BoxFit.cover)),
+                          child: InkWell(
+                            onTap: () {},
+                            customBorder: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                        height: 47.76,
-                        width: 119,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(255, 197, 197, 197),
-                                  blurRadius: 6,
-                                  offset: Offset(0, 2))
-                            ],
-                            color: Color.fromARGB(255, 236, 246, 255),
-                            image: DecorationImage(
-                                image: AssetImage('image/SoftChocoCream.png'),
-                                fit: BoxFit.cover)),
-                        child: InkWell(
-                          onTap: () {},
-                          customBorder: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          height: 47.76,
+                          width: 119,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(255, 197, 197, 197),
+                                    blurRadius: 6,
+                                    offset: Offset(0, 2))
+                              ],
+                              color: Color.fromARGB(255, 236, 246, 255),
+                              image: DecorationImage(
+                                  image: AssetImage('image/SoftChocoCream.png'),
+                                  fit: BoxFit.cover)),
+                          child: InkWell(
+                            onTap: () {},
+                            customBorder: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                          height: 47.76,
+                          width: 119,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Color.fromARGB(255, 197, 197, 197),
+                                    blurRadius: 6,
+                                    offset: Offset(0, 2))
+                              ],
+                              color: Color.fromARGB(255, 236, 246, 255),
+                              image: DecorationImage(
+                                  image: AssetImage('image/SoftChocoCream.png'),
+                                  fit: BoxFit.cover)),
+                          child: InkWell(
+                            onTap: () {},
+                            customBorder: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
