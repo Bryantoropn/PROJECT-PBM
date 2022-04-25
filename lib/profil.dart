@@ -4,6 +4,8 @@ import 'package:per4/main.dart';
 import 'package:per4/home.dart';
 import 'package:per4/topUp.dart';
 
+import 'feedback.dart';
+
 class MyProfile extends StatelessWidget {
   const MyProfile({Key? key}) : super(key: key);
   @override
@@ -313,7 +315,10 @@ class Profile extends StatelessWidget {
                   color: Colors.black,
                   size: 16,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MyFeedback()));
+                },
               ),
             ),
             Divider(
