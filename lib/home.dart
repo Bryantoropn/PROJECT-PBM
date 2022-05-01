@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per4/Reservasi.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -224,7 +225,12 @@ class Home extends StatelessWidget {
                                 image: AssetImage('image/MenuReservasi.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MyReservasi()));
+                          },
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                         ),
