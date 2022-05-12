@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Reservasi.dart';
+import 'package:per4/scanQrPage.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -15,7 +16,10 @@ class MyHomePage extends StatelessWidget {
             child: IconButton(
               icon: Icon(Icons.qr_code_2_rounded),
               iconSize: 30,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyScanQr()));
+              },
             ),
           ),
           Container(
