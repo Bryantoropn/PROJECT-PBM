@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Reservasi.dart';
+import 'package:per4/konfirmasi%20pemesanan.dart';
 import 'package:per4/scanQrPage.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -160,7 +161,13 @@ class Home extends StatelessWidget {
                                 image: AssetImage('image/MenuFullMeal.png'),
                                 fit: BoxFit.cover)),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        konfirmPemesanan()));
+                          },
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                         ),
