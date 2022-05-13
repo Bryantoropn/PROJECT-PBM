@@ -14,6 +14,7 @@ class MyScanQr extends StatefulWidget {
 class _MyScanQrState extends State<MyScanQr> {
   String text = 'Hasil Qr Code';
   GlobalKey _qrKey = GlobalKey();
+  late QRViewController _controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,18 @@ class _MyScanQrState extends State<MyScanQr> {
       body: Stack(
         children: [
           QRView(
-              key: _qrKey, onQRViewCreated: (QRViewController controller) {}),
+              key: _qrKey,
+              overlay: QrScannerOverlayShape(
+                  borderColor: Color.fromARGB(255, 0, 0, 0)),
+              onQRViewCreated: (QRViewController controller) {
+                this._controller = controller;
+                controller.scannedDataStream.listen((event) {
+                  if (mounted) {
+                    _controller.dispose();
+                    Navigator.pop(context, event);
+                  }
+                });
+              }),
           //     child: Center(
           //   child: Text(text),)
           Align(
