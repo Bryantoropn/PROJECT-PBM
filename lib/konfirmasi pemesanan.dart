@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per4/map/maps.dart';
 import 'package:per4/topUp.dart';
 
 class konfirmPemesanan extends StatelessWidget {
@@ -491,7 +492,7 @@ class konfirmPemesanan extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => myTopUp()));
+                                          builder: (context) => MyMaps()));
                                 },
                                 child: const Text('OK'),
                               ),
