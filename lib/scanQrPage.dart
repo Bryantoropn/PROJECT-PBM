@@ -1,8 +1,8 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:per4/PageAppBar.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
+//import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_code_scanner/src/qr_scanner_overlay_shape.dart';
 
 class MyScanQr extends StatefulWidget {
   const MyScanQr({Key? key}) : super(key: key);
@@ -13,23 +13,24 @@ class MyScanQr extends StatefulWidget {
 
 class _MyScanQrState extends State<MyScanQr> {
   String text = 'Hasil Qr Code';
+  GlobalKey _qrKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PageAppBar(),
-        body: Column(
-          children: [
-            Expanded(
-                child: Center(
-              child: Text(text),
-            )),
-            Container(
+      appBar: PageAppBar(),
+      body: Stack(
+        children: [
+          QRView(
+              key: _qrKey, onQRViewCreated: (QRViewController controller) {}),
+          //     child: Center(
+          //   child: Text(text),)
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
               height: 100,
               child: Center(
                 child: IconButton(
-                  onPressed: () async {
-                    text = (await scanner.scan())!;
-                  },
+                  onPressed: () async {},
                   icon: Icon(Icons.camera),
                   iconSize: 50,
                 ),
@@ -44,8 +45,10 @@ class _MyScanQrState extends State<MyScanQr> {
                 ],
               ),
               // decoration: BoxDecoration(),
-            )
-          ],
-        ));
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
