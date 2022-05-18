@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
 
+import '../Login/Regis/login.dart';
+
 class MyFeedback extends StatelessWidget {
   const MyFeedback({Key? key}) : super(key: key);
   @override
@@ -181,23 +183,6 @@ class Feedback extends StatelessWidget {
               thickness: 1,
               indent: 12,
               endIndent: 10,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 50, right: 50, top: 20),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                textColor: Colors.white,
-                color: Color.fromARGB(255, 255, 89, 37),
-                child: Text(
-                  "LOGOUT",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => myLogin()));
-                },
-              ),
             ),
           ],
         ));

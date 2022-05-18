@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:per4/NavBar.dart';
 import 'package:per4/NavBarProf.dart';
 import 'package:date_time_picker/date_time_picker.dart';
-import 'package:per4/profil.dart';
+import 'package:per4/Profile/profil.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);

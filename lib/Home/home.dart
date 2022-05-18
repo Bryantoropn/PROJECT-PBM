@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:per4/Reservasi.dart';
-import 'package:per4/konfirmasi%20pemesanan.dart';
+import 'package:per4/Home/Reservasi.dart';
+import 'package:per4/Home/konfirmasi%20pemesanan.dart';
 import 'package:per4/scanQrPage.dart';
+
+import 'konfirmasi pemesanan.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);

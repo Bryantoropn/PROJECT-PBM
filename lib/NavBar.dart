@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'chat.dart';
-import 'history.dart';
-import 'profil.dart';
+import 'Home/home.dart';
+import 'Message/chat.dart';
+import 'History/history.dart';
+import 'Profile/profil.dart';
 
 class BottomWidget extends StatefulWidget {
   const BottomWidget({Key? key}) : super(key: key);

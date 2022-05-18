@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:per4/konfirmasiTopUp.dart';
-import 'NavBarProf.dart';
+import 'package:per4/Profile/Top%20Up/konfirmasiTopUp.dart';
+import '../../NavBarProf.dart';
 
 class myTopUp extends StatelessWidget {
   const myTopUp({Key? key}) : super(key: key);

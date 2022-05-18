@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:per4/editProfile.dart';
+import 'package:per4/Profile/editProfile.dart';
 import 'package:per4/main.dart';
-import 'package:per4/topUp.dart';
+import 'package:per4/Profile/Top%20Up/topUp.dart';
 
 import 'feedback.dart';
+import '../Login/Regis/login.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({Key? key}) : super(key: key);
