@@ -64,6 +64,29 @@ class _ProfileEditState extends State<ProfileEdit> {
             ListView(
               shrinkWrap: true,
               children: [
+                Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 40.0,
+                        backgroundColor: Colors.grey,
+                      ),
+                      Positioned(
+                          bottom: 20.0,
+                          right: 20.00,
+                          child: InkWell(
+                            onTap: () {},
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.teal,
+                              size: 15.0,
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
                 Align(
                     alignment: Alignment.center,
                     child: Text(
@@ -167,7 +190,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 130, right: 130, top: 30),
+                  padding: EdgeInsets.only(left: 130, right: 130, top: 20),
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
