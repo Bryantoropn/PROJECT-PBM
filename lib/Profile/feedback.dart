@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
 
+import '../Home/keranjang.dart';
 import '../Login/Regis/login.dart';
 
 class MyFeedback extends StatelessWidget {
@@ -29,7 +30,9 @@ class MyFeedback extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyKeranjang()));},
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           )

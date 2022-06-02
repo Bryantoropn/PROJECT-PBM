@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Profile/Top%20Up/konfirmasiTopUp.dart';
+import '../../Home/keranjang.dart';
 import '../../NavBarProf.dart';
 
 class myTopUp extends StatelessWidget {
@@ -29,7 +30,10 @@ class myTopUp extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyKeranjang()));
+            },
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           ),
@@ -275,8 +279,10 @@ class _TopUpState extends State<TopUp> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => konfirmTopUp()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => konfirmTopUp()));
                   },
                 ),
               ),

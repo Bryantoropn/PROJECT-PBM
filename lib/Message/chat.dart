@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Home/keranjang.dart';
+
 class MyChat extends StatelessWidget {
   const MyChat({Key? key}) : super(key: key);
   @override
@@ -20,7 +22,10 @@ class MyChat extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyKeranjang()));
+            },
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           )

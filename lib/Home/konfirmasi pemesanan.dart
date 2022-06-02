@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:per4/map/maps.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
 
+import 'keranjang.dart';
+
 class konfirmPemesanan extends StatelessWidget {
   const konfirmPemesanan({Key? key}) : super(key: key);
   @override
@@ -14,7 +16,7 @@ class konfirmPemesanan extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back_ios_new_rounded),
             color: Colors.black,
           ),
           title: Row(
@@ -28,7 +30,10 @@ class konfirmPemesanan extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyKeranjang()));
+              },
               icon: Icon(Icons.add_shopping_cart),
               color: Colors.black,
             ),

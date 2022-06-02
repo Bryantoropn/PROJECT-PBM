@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
 
+import '../../Home/keranjang.dart';
+
 class konfirmTopUp extends StatelessWidget {
   const konfirmTopUp({Key? key}) : super(key: key);
   @override
@@ -27,7 +29,10 @@ class konfirmTopUp extends StatelessWidget {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyKeranjang()));
+              },
               icon: Icon(Icons.add_shopping_cart),
               color: Colors.black,
             ),

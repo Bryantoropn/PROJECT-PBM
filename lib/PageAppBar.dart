@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per4/Home/keranjang.dart';
 
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -29,7 +30,10 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyKeranjang()));
+          },
           icon: Icon(Icons.add_shopping_cart),
           color: Colors.black,
         )

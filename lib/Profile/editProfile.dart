@@ -4,6 +4,8 @@ import 'package:per4/NavBarProf.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:per4/Profile/profil.dart';
 
+import '../Home/keranjang.dart';
+
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
 
@@ -29,7 +31,9 @@ class _EditProfileState extends State<EditProfile> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyKeranjang()));},
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           )

@@ -3,6 +3,7 @@ import 'package:per4/Profile/editProfile.dart';
 import 'package:per4/main.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
 
+import '../Home/keranjang.dart';
 import 'feedback.dart';
 import '../Login/Regis/login.dart';
 
@@ -26,7 +27,9 @@ class MyProfile extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyKeranjang()));},
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           )

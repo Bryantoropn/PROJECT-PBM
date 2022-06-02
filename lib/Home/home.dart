@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Home/Reservasi.dart';
+import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Home/konfirmasi%20pemesanan.dart';
 import 'package:per4/scanQrPage.dart';
 
@@ -28,7 +29,12 @@ class MyHomePage extends StatelessWidget {
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyKeranjang()));
+              },
               icon: Icon(Icons.shopping_basket),
               iconSize: 30,
             ),
@@ -167,8 +173,7 @@ class Home extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        konfirmPemesanan()));
+                                    builder: (context) => konfirmPemesanan()));
                           },
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),

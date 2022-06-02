@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:per4/Home/detail%20pemesanan.dart';
-import 'package:per4/Home/home.dart';
-import 'package:per4/PageAppBar.dart';
+import 'package:per4/NavBarHome.dart';
 import 'package:per4/map/direction_repo.dart';
 import 'package:per4/map/directions_model.dart';
+
+import '../Home/keranjang.dart';
 
 class MyMaps extends StatefulWidget {
   const MyMaps({Key? key}) : super(key: key);
@@ -67,9 +68,9 @@ class _MyMapsState extends State<MyMaps> {
         leading: IconButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyHomePage()));
+                MaterialPageRoute(builder: (context) => BottomWidgetHome()));
           },
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back_ios_new_rounded),
           color: Colors.black,
         ),
         title: Row(
@@ -83,7 +84,10 @@ class _MyMapsState extends State<MyMaps> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyKeranjang()));
+            },
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           ),

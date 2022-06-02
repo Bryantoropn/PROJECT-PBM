@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   date_time_picker: ^2.1.0
   dio: ^4.0.0
-  flutter_polyline_points: ^0.2.6
+  flutter_polyline_points: ^1.0.0
   google_maps_flutter: ^2.0.2
 
 dev_dependencies:
