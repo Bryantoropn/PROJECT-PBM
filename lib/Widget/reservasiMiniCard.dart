@@ -5,14 +5,18 @@ import 'package:per4/Reservasi/DetailReservasi.dart';
 
 class CardReservasi extends StatelessWidget {
   final namaGambar;
+  final lebar;
+  final tinggi;
 
-  CardReservasi({this.namaGambar});
+  CardReservasi({this.namaGambar, this.lebar, this.tinggi});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Expanded(
         child: Container(
+          width: lebar,
+          height: tinggi,
           margin: EdgeInsetsDirectional.all(15),
           decoration: BoxDecoration(
             boxShadow: [

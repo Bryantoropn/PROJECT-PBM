@@ -1,8 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Home/konfirmasi%20pemesanan.dart';
 import 'package:per4/scanQrPage.dart';
+import 'package:per4/Widget/reservasiMiniCard.dart';
 
 class DetailReservasi extends StatelessWidget {
   const DetailReservasi({Key? key}) : super(key: key);
@@ -57,16 +60,121 @@ class DetailReservasi extends StatelessWidget {
             ),
             preferredSize: Size.fromHeight(200)),
       ),
-      body: const Home(),
+      body: const DetailRes(),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class DetailRes extends StatelessWidget {
+  const DetailRes({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView();
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            // DESKRIPSI ATAS //
+            Container(
+              margin: EdgeInsetsDirectional.all(20),
+              child: Text(
+                'Maems menyediakan layanan reservasi untuk pasangan dengan fasilitas berupa dua bangku dan satu buah meja.',
+                textAlign: TextAlign.center,
+                style: TextStyle(height: 1.5, fontWeight: FontWeight.bold),
+              ),
+            ),
+
+            //  //
+            Container(
+              padding: EdgeInsetsDirectional.all(20),
+              decoration: BoxDecoration(color: Colors.white),
+              child: Column(
+                children: [
+                  // TITLE GAMBAR //
+                  Container(
+                    margin: EdgeInsetsDirectional.all(10),
+                    child: Text(
+                      "GAMBAR",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+
+                  // GAMBAR //
+                  SingleChildScrollView(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CardReservasi(
+                          namaGambar: 'images/RES3.png',
+                          lebar: 120,
+                        ),
+                        CardReservasi(
+                          namaGambar: 'images/RES1.png',
+                          lebar: 120,
+                        ),
+                        CardReservasi(
+                          namaGambar: 'images/RES3.png',
+                          lebar: 120,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // PESAN OR KERANJANG //
+            Row(
+              children: [
+                Expanded(
+                    child: Container(
+                  margin: EdgeInsets.fromLTRB(50, 30, 50, 30),
+                  padding: EdgeInsetsDirectional.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 185, 185, 185),
+                          blurRadius: 6,
+                          offset: Offset(0, 4))
+                    ],
+                  ),
+                  child: Text(
+                    'PESAN',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 253, 253),
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+                Expanded(
+                    child: Container(
+                  margin: EdgeInsets.fromLTRB(50, 30, 50, 30),
+                  padding: EdgeInsetsDirectional.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 185, 185, 185),
+                          blurRadius: 6,
+                          offset: Offset(0, 4))
+                    ],
+                  ),
+                  child: Text(
+                    'PESAN',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontWeight: FontWeight.bold),
+                  ),
+                )),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

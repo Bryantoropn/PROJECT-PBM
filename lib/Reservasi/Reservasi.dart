@@ -51,7 +51,7 @@ class Reservasi extends StatelessWidget {
                       namaGambar: 'images/RES2.png',
                     ),
                     CardReservasi(
-                      namaGambar: 'images/RES1.png',
+                      namaGambar: 'images/RES4.png',
                     ),
                   ],
                 )),
@@ -62,8 +62,8 @@ class Reservasi extends StatelessWidget {
                   children: [
                     Center(
                       child: Container(
-                        margin: EdgeInsetsDirectional.all(30),
-                        padding: EdgeInsetsDirectional.all(10),
+                        margin: EdgeInsets.fromLTRB(40, 0, 40, 00),
+                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Colors.white,
