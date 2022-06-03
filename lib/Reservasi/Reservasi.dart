@@ -58,6 +58,7 @@ class Reservasi extends StatelessWidget {
                 children: [
                   Center(
                     child: Container(
+                      margin: EdgeInsetsDirectional.all(30),
                       padding: EdgeInsetsDirectional.all(10),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -85,16 +86,37 @@ class Reservasi extends StatelessWidget {
           ),
 
           Container(
-            child: Column(
+            margin: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+            alignment: FractionalOffset.center,
+            child: Wrap(
+              spacing: 10,
+              alignment: WrapAlignment.center,
+              runSpacing: 10,
               children: [
                 Text('CUSTOMER SERVICE'),
                 Text(
                     'Silakan hubungi customer service kami dengan mengakses button dibawah ini'),
-                SizedBox(),
                 Text('Terrima kasih atas kesediaan anda')
               ],
             ),
-          )
+          ),
+          Container(
+            margin: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+            height: 40,
+            width: 180,
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                  color: Color.fromARGB(255, 197, 197, 197),
+                  blurRadius: 6,
+                  offset: Offset(0, 2))
+            ]),
+            child: Center(
+              child: Text(
+                'HERE',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
         ],
       ),
     );
