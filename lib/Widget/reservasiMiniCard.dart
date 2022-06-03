@@ -16,9 +16,9 @@ class CardReservasi extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  color: Color.fromARGB(255, 197, 197, 197),
+                  color: Color.fromARGB(255, 146, 146, 146),
                   blurRadius: 6,
-                  offset: Offset(0, 2))
+                  offset: Offset(0, 4))
             ],
           ),
           child: Image.asset(namaGambar),

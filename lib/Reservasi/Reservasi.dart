@@ -48,7 +48,7 @@ class Reservasi extends StatelessWidget {
                       namaGambar: 'images/RES1.png',
                     ),
                     CardReservasi(
-                      namaGambar: 'images/RES1.png',
+                      namaGambar: 'images/RES2.png',
                     ),
                     CardReservasi(
                       namaGambar: 'images/RES1.png',
@@ -79,10 +79,10 @@ class Reservasi extends StatelessWidget {
                       ),
                     ),
                     CardReservasi(
-                      namaGambar: 'images/RES1.png',
+                      namaGambar: 'images/RES2.png',
                     ),
                     CardReservasi(
-                      namaGambar: 'images/RES1.png',
+                      namaGambar: 'images/RES4.png',
                     ),
                   ],
                 )),

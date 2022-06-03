@@ -77,6 +77,9 @@ flutter:
    - ./image/appbarReservasi2.png
    - ./image/ReservasiImg.png
    - ./images/RES1.png
+   - ./images/RES2.png
+   - ./images/RES3.png
+   - ./images/RES4.png
    - ./image/mainGradasi.png
   #   - images/a_dot_ham.jpeg
 
