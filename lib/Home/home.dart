@@ -3,6 +3,7 @@ import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Home/konfirmasi%20pemesanan.dart';
 import 'package:per4/scanQrPage.dart';
+import 'package:per4/Makanan/detailMakanan.dart';
 
 import 'konfirmasi pemesanan.dart';
 
@@ -303,7 +304,13 @@ class Home extends StatelessWidget {
                                   image: AssetImage('image/SoftChocoCream.png'),
                                   fit: BoxFit.cover)),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DetailMakanan()));
+                            },
                             customBorder: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
@@ -325,7 +332,13 @@ class Home extends StatelessWidget {
                                   image: AssetImage('image/SoftChocoCream.png'),
                                   fit: BoxFit.cover)),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DetailMakanan()));
+                            },
                             customBorder: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
@@ -347,7 +360,13 @@ class Home extends StatelessWidget {
                                   image: AssetImage('image/SoftChocoCream.png'),
                                   fit: BoxFit.cover)),
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DetailMakanan()));
+                            },
                             customBorder: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
