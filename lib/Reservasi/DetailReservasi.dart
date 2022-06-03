@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
@@ -137,20 +135,21 @@ class DetailRes extends StatelessWidget {
 
                   // GAMBAR //
                   SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CardReservasi(
                           namaGambar: 'images/RES3.png',
-                          lebar: 120,
+                          lebar: 200,
                         ),
                         CardReservasi(
                           namaGambar: 'images/RES1.png',
-                          lebar: 120,
+                          lebar: 200,
                         ),
                         CardReservasi(
                           namaGambar: 'images/RES3.png',
-                          lebar: 120,
+                          lebar: 200,
                         ),
                       ],
                     ),

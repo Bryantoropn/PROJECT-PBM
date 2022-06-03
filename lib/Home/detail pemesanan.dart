@@ -4,6 +4,7 @@ import 'package:per4/NavBarHome.dart';
 import 'package:per4/Widget/PageAppBar.dart';
 import 'package:per4/Profile/editProfile.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
+import 'package:per4/map/maps.dart';
 import '../Profile/feedback.dart';
 import '../Login/Regis/login.dart';
 import 'keranjang.dart';
@@ -13,38 +14,7 @@ class DetailPemesanan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.black,
-          ),
-        ),
-        backgroundColor: Color.fromARGB(255, 247, 246, 255),
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "MAEMS APP",
-              style: TextStyle(color: Colors.black),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MyKeranjang()));
-            },
-            icon: Icon(Icons.add_shopping_cart),
-            color: Colors.black,
-          )
-        ],
-      ),
+      appBar: PageAppBar(), 
       body: Profile(),
     );
   }
@@ -72,7 +42,7 @@ class Profile extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetailPemesanan()));
+                          builder: (context) => MyMaps()));
                 },
                 child: CircleAvatar(
                   child: Icon(

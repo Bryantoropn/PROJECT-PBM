@@ -5,8 +5,8 @@ import 'package:per4/Reservasi/DetailReservasi.dart';
 
 class CardReservasi extends StatelessWidget {
   final namaGambar;
-  final lebar;
-  final tinggi;
+  double? lebar; 
+  double? tinggi;
 
   CardReservasi({this.namaGambar, this.lebar, this.tinggi});
 
