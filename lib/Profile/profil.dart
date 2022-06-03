@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:per4/Profile/editProfile.dart';
 import 'package:per4/main.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
-
+import 'package:per4/Widget/PageAppBar.dart';
 import '../Home/keranjang.dart';
 import 'feedback.dart';
 import '../Login/Regis/login.dart';
@@ -12,29 +12,7 @@ class MyProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Container(),
-        backgroundColor: Color.fromARGB(255, 247, 246, 255),
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "MAEMS APP",
-              style: TextStyle(color: Colors.black),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyKeranjang()));},
-            icon: Icon(Icons.add_shopping_cart),
-            color: Colors.black,
-          )
-        ],
-      ),
+      appBar: PageAppBar(),
       body: Profile(),
     );
   }
@@ -346,8 +324,7 @@ class Profile extends StatelessWidget {
                   showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                      content:
-                          const Text('Apakah anda yakin ingin keluar?'),
+                      content: const Text('Apakah anda yakin ingin keluar?'),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () => Navigator.pop(context, 'Cancel'),
