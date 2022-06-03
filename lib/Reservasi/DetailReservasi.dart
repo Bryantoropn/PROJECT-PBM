@@ -7,6 +7,42 @@ import 'package:per4/Home/konfirmasi%20pemesanan.dart';
 import 'package:per4/scanQrPage.dart';
 import 'package:per4/Widget/reservasiMiniCard.dart';
 
+class widgetReview extends StatelessWidget {
+  final namaUser;
+  final isiPesan;
+
+  widgetReview({this.namaUser, this.isiPesan});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.only(right: 4, left: 4),
+          leading: CircleAvatar(
+            backgroundColor: Color.fromARGB(255, 196, 196, 196),
+            backgroundImage: AssetImage("image/profil.png"),
+            maxRadius: 25,
+          ),
+          title: Text(
+            namaUser,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(isiPesan, style: TextStyle(fontSize: 12)),
+          trailing: Text("16:30"),
+        ),
+        Divider(
+          color: Color.fromARGB(255, 196, 196, 196),
+          height: 5,
+          thickness: 1,
+          indent: 70,
+          endIndent: 10,
+        ),
+      ],
+    );
+  }
+}
+
 class DetailReservasi extends StatelessWidget {
   const DetailReservasi({Key? key}) : super(key: key);
   @override
@@ -84,7 +120,7 @@ class DetailRes extends StatelessWidget {
               ),
             ),
 
-            //  //
+            // GAMBAR //
             Container(
               padding: EdgeInsetsDirectional.all(20),
               decoration: BoxDecoration(color: Colors.white),
@@ -123,6 +159,15 @@ class DetailRes extends StatelessWidget {
               ),
             ),
 
+            // LOAD MORE //
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: Text(
+                "LOAD MORE",
+                style: TextStyle(letterSpacing: 2),
+              ),
+            ),
+
             // PESAN OR KERANJANG //
             Row(
               children: [
@@ -131,7 +176,7 @@ class DetailRes extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(50, 30, 50, 30),
                   padding: EdgeInsetsDirectional.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.orange,
+                    color: Color.fromARGB(255, 255, 119, 0),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
@@ -153,7 +198,7 @@ class DetailRes extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(50, 30, 50, 30),
                   padding: EdgeInsetsDirectional.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.orange,
+                    color: Color.fromARGB(255, 255, 119, 0),
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
@@ -171,7 +216,40 @@ class DetailRes extends StatelessWidget {
                   ),
                 )),
               ],
-            )
+            ),
+
+            // REVIEW //
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "REVIEW",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        letterSpacing: 2,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  widgetReview(
+                    namaUser: "Ardin Nugroho",
+                    isiPesan: "Wah ini tempatnya luas banget",
+                  ),
+                  widgetReview(
+                    namaUser: "Bryantoro saputro",
+                    isiPesan: "Nyaman beut",
+                  ),
+                  widgetReview(
+                    namaUser: "Fadhli Nur",
+                    isiPesan: "Gracias!!",
+                  ),
+                  widgetReview(
+                    namaUser: "Thomas Slebew",
+                    isiPesan: "You 'll never walk alone",
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -82,6 +82,7 @@ flutter:
    - ./images/RES3.png
    - ./images/RES4.png
    - ./image/mainGradasi.png
+   - ./image/profil.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
