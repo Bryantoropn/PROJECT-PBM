@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Widget/PageAppBar.dart';
 
 import '../Home/keranjang.dart';
 
@@ -7,30 +8,7 @@ class MyChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Container(),
-        backgroundColor: Color.fromARGB(255, 247, 246, 255),
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "MAEMS APP",
-              style: TextStyle(color: Colors.black),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MyKeranjang()));
-            },
-            icon: Icon(Icons.add_shopping_cart),
-            color: Colors.black,
-          )
-        ],
-      ),
+      appBar: PageAppBar(),
       body: Chat(),
     );
   }
