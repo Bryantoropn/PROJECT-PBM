@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/NavBar.dart';
+import 'package:per4/Reservasi/DetailReservasi.dart';
 
 class CardReservasi extends StatelessWidget {
   final namaGambar;
@@ -26,7 +27,7 @@ class CardReservasi extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BottomWidget()));
+            MaterialPageRoute(builder: (context) => const DetailReservasi()));
       },
     );
   }

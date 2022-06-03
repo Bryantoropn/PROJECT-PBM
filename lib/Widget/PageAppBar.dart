@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Home/keranjang.dart';
+import 'package:simple_shadow/simple_shadow.dart';
 
 class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -22,10 +23,13 @@ class PageAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "MAEMS APP",
-            style: TextStyle(color: Colors.black),
-          ),
+          SimpleShadow(
+            child: Image.asset('image/maems.png'),
+            opacity: 0.6,
+            color: Color.fromARGB(255, 67, 67, 67),
+            offset: Offset(0, 3),
+            sigma: 2,
+          )
         ],
       ),
       actions: [

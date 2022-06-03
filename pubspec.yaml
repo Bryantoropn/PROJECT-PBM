@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   qr_code_scanner: ^0.7.0
+  simple_shadow: ^0.3.0
 
 
   # The following adds the Cupertino Icons font to your application.
