@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:per4/main.dart';
-import 'package:per4/PageAppBar.dart';
+import 'package:per4/Widget/PageAppBar.dart';
 
 class MyReservasi extends StatelessWidget {
   const MyReservasi({Key? key}) : super(key: key);
@@ -19,7 +19,22 @@ class Reservasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Text("yolo"),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              height: 60,
+              color: Colors.amber,
+            ),
+          ),
+          Expanded(
+            child: Container(
+              height: 60,
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
