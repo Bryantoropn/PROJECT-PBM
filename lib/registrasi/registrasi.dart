@@ -146,7 +146,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         validator: (val) {
           if (val == null) {
             return 'Email tidak boleh kosong';
-          } else if (val.length == 0) {
+          } else if (val.length < 5) {
             return 'Email minimal 5 karakter';
           }
           return null;

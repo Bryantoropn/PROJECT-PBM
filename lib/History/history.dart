@@ -22,35 +22,10 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  var list_item = [];
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  getData() {
-    var colBuku = FirebaseFirestore.instance.collection('history');
-    colBuku.get().then((value) {
-      print('value');
-      print(value);
-      print(value.docs.length);
-      setState(() {
-        list_item = value.docs.map((e) {
-          return {
-            'harga': e['harga'],
-            'nama_makanan': e['nama_makanan'],
-            'rating': e['rating'],
-            'tanggal': e['tanggal'],
-          };
-        }).toList();
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users =
+    CollectionReference history =
         FirebaseFirestore.instance.collection('history');
     final String documentId1 = '1';
     final String documentId2 = '2';
@@ -66,7 +41,7 @@ class _HistoryState extends State<History> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   )),
               FutureBuilder<DocumentSnapshot>(
-                future: users.doc(documentId1).get(),
+                future: history.doc(documentId1).get(),
                 builder: (BuildContext context,
                     AsyncSnapshot<DocumentSnapshot> snapshot) {
                   if (snapshot.hasError) {
@@ -179,7 +154,7 @@ class _HistoryState extends State<History> {
                 },
               ),
               FutureBuilder<DocumentSnapshot>(
-                future: users.doc(documentId2).get(),
+                future: history.doc(documentId2).get(),
                 builder: (BuildContext context,
                     AsyncSnapshot<DocumentSnapshot> snapshot) {
                   if (snapshot.hasError) {
