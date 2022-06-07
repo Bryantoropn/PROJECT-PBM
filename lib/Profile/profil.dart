@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:per4/Profile/editProfile.dart';
-import 'package:per4/main.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
 import 'package:per4/Widget/PageAppBar.dart';
-import '../Home/keranjang.dart';
 import 'feedback.dart';
-import '../Login/Regis/login.dart';
+import '../Login/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MyProfile extends StatelessWidget {
+class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
+
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +23,17 @@ class MyProfile extends StatelessWidget {
   }
 }
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  Profile({Key? key}) : super(key: key);
 
   @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('user');
+    final String documentId = 'olExeKA9wPCzHhzZYono';
     return SingleChildScrollView(
         padding: EdgeInsets.all(15),
         child: Column(
@@ -47,26 +58,46 @@ class Profile extends StatelessWidget {
                         SizedBox(
                           width: 16,
                         ),
-                        Expanded(
-                          child: Container(
-                            color: Colors.transparent,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Mr. Maemes",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text("082141067692",
-                                    style: TextStyle(fontSize: 12)),
-                                Text("maems@gmail.com",
-                                    style: TextStyle(fontSize: 12))
-                              ],
-                            ),
-                          ),
-                        ),
+                        FutureBuilder<DocumentSnapshot>(
+                          future: users.doc(documentId).get(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<DocumentSnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return Text("Something went wrong");
+                            }
+
+                            if (snapshot.hasData && !snapshot.data!.exists) {
+                              return Text("Document does not exist");
+                            }
+
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              Map<String, dynamic> data =
+                                  snapshot.data!.data() as Map<String, dynamic>;
+                              return Expanded(
+                                child: Container(
+                                    color: Colors.transparent,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          data["nama"],
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("${data['nohp']}",
+                                            style: TextStyle(fontSize: 12)),
+                                        Text("${data['email']}",
+                                            style: TextStyle(fontSize: 12))
+                                      ],
+                                    )),
+                              );
+                            }
+                            return Text("loading");
+                          },
+                        )
                       ],
                     ),
                   ),

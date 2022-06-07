@@ -169,9 +169,9 @@ class DetailRes extends StatelessWidget {
 
             // PESAN OR KERANJANG //
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                    child: Container(
+                Container(
                   margin: EdgeInsets.fromLTRB(50, 30, 50, 30),
                   padding: EdgeInsetsDirectional.all(10),
                   decoration: BoxDecoration(
@@ -191,9 +191,8 @@ class DetailRes extends StatelessWidget {
                         color: Color.fromARGB(255, 255, 253, 253),
                         fontWeight: FontWeight.bold),
                   ),
-                )),
-                Expanded(
-                    child: Container(
+                ),
+                Container(
                   margin: EdgeInsets.fromLTRB(50, 30, 50, 30),
                   padding: EdgeInsetsDirectional.all(10),
                   decoration: BoxDecoration(
@@ -213,12 +212,13 @@ class DetailRes extends StatelessWidget {
                         color: Color.fromARGB(255, 255, 255, 255),
                         fontWeight: FontWeight.bold),
                   ),
-                )),
+                ),
               ],
             ),
 
             // REVIEW //
             Container(
+              padding: EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

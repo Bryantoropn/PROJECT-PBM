@@ -6,7 +6,7 @@ import 'package:per4/Profile/editProfile.dart';
 import 'package:per4/Profile/Top%20Up/topUp.dart';
 import 'package:per4/map/maps.dart';
 import '../Profile/feedback.dart';
-import '../Login/Regis/login.dart';
+import '../Login/login.dart';
 import 'keranjang.dart';
 
 class DetailPemesanan extends StatelessWidget {

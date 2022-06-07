@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:per4/NavBar.dart';
-import 'package:per4/NavBarProf.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:per4/Profile/profil.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../Home/keranjang.dart';
 
@@ -32,8 +33,9 @@ class _EditProfileState extends State<EditProfile> {
         actions: [
           IconButton(
             onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyKeranjang()));},
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyKeranjang()));
+            },
             icon: Icon(Icons.add_shopping_cart),
             color: Colors.black,
           )
@@ -59,6 +61,10 @@ class ProfileEdit extends StatefulWidget {
 }
 
 class _ProfileEditState extends State<ProfileEdit> {
+  var nama = '';
+  var email = '';
+  var noHp = '';
+  var tgllhr = '';
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -107,7 +113,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: TextField(
+                  child: TextFormField(
                     maxLength: 25,
                     style: TextStyle(color: Colors.black),
                     keyboardType: TextInputType.text,
@@ -120,6 +126,9 @@ class _ProfileEditState extends State<ProfileEdit> {
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(7)),
                             borderSide: BorderSide(color: Colors.blue))),
+                    onChanged: (v) {
+                      nama = v;
+                    },
                   ),
                 ),
                 Padding(
@@ -131,7 +140,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: TextField(
+                  child: TextFormField(
                     maxLength: 30,
                     style: TextStyle(color: Colors.black),
                     keyboardType: TextInputType.text,
@@ -144,6 +153,9 @@ class _ProfileEditState extends State<ProfileEdit> {
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(7)),
                             borderSide: BorderSide(color: Colors.blue))),
+                    onChanged: (v) {
+                      email = v;
+                    },
                   ),
                 ),
                 Padding(
@@ -155,7 +167,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                 ),
                 SizedBox(
                   width: 300,
-                  child: TextField(
+                  child: TextFormField(
                     maxLength: 13,
                     style: TextStyle(color: Colors.black),
                     keyboardType: TextInputType.text,
@@ -168,6 +180,9 @@ class _ProfileEditState extends State<ProfileEdit> {
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(7)),
                             borderSide: BorderSide(color: Colors.blue))),
+                    onChanged: (v) {
+                      noHp = v;
+                    },
                   ),
                 ),
                 Padding(
@@ -184,54 +199,69 @@ class _ProfileEditState extends State<ProfileEdit> {
                       firstDate: DateTime(1950),
                       lastDate: DateTime(2100),
                       dateLabelText: 'Pilih tanggal lahir',
-                      onChanged: (val) => print(val),
-                      validator: (val) {
-                        print(val);
+                      onChanged: (v) {
+                        tgllhr = v;
+                      },
+                      validator: (v) {
+                        print(v);
                         return null;
                       },
-                      onSaved: (val) => print(val),
+                      onSaved: (v) => print(v),
                     )
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 130, right: 130, top: 20),
-                  child: RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    textColor: Colors.white,
-                    color: Color.fromARGB(255, 255, 89, 37),
-                    child: Text(
-                      "SIMPAN",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: () => showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        content: const Text(
-                            'Apakah anda yakin untuk mengubah data?'),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () => Navigator.pop(context, 'Cancel'),
-                            child: const Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          BottomWidgetProf()));
-                            },
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                _buildBtn(),
               ],
             ),
           ],
         ));
+  }
+
+  Container _buildBtn() {
+    return Container(
+      padding: EdgeInsets.only(left: 130, right: 130, top: 20),
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        textColor: Colors.white,
+        color: Color.fromARGB(255, 255, 89, 37),
+        child: Text(
+          "SIMPAN",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        onPressed: () {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              content: const Text('Apakah anda yakin ingin menyimpan ?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('cancel'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    var collection =
+                        FirebaseFirestore.instance.collection('user');
+                    var res = await collection.add({
+                      'nama': nama,
+                      'email': email,
+                      'nohp': noHp,
+                      'tgllhr': tgllhr
+                    });
+                    print('simpan firestore');
+                    print(res);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyProfile()));
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 }

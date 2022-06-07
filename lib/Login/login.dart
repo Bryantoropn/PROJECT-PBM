@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:per4/Login/Regis/registrasi.dart';
-import '../../NavBar.dart';
+import 'package:per4/registrasi/registrasi.dart';
+import '../NavBar.dart';
 
 class myLogin extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class myLogin extends StatefulWidget {
 
 class _myLoginState extends State<myLogin> {
   var show_password = false;
-  var err_msg = '';
+  var error_message = '';
   var ctrlEmail = TextEditingController();
   var ctrlPassword = TextEditingController();
 
@@ -142,9 +142,9 @@ class _myLoginState extends State<myLogin> {
             _buildEmail(),
             _buildPassword(),
             SizedBox(height: 5),
-            if (err_msg.isNotEmpty)
+            if (error_message.isNotEmpty)
               Text(
-                "Email dan password belum terdaftar",
+                error_message,
                 style: TextStyle(
                   color: Colors.red.shade600,
                 ),
@@ -182,7 +182,7 @@ class _myLoginState extends State<myLogin> {
   _doLogin() async {
     try {
       setState(() {
-        err_msg = '';
+        error_message = '';
       });
       var email = ctrlEmail.text;
       var pass = ctrlPassword.text;
@@ -204,7 +204,7 @@ class _myLoginState extends State<myLogin> {
         print(ex);
         print(ex.message);
         setState(() {
-          err_msg = ex.message ?? 'kesalahan saat login.';
+          error_message = ex.message ?? 'kesalahan saat login.';
         });
       }
     }

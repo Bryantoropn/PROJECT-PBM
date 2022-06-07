@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'login.dart';
+import '../Login/login.dart';
+import 'form_registrasi.dart';
 
 class RegistrasiPage extends StatefulWidget {
   const RegistrasiPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class RegistrasiPage extends StatefulWidget {
 
 class _RegistrasiPageState extends State<RegistrasiPage> {
   var show_password = false;
-  var err_msg = '';
+  var eror_message = '';
   var ctrlEmail = TextEditingController();
   var ctrlPass = TextEditingController();
   var formkey = GlobalKey<FormState>();
@@ -145,7 +146,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         validator: (val) {
           if (val == null) {
             return 'Email tidak boleh kosong';
-          } else if (val.length < 5) {
+          } else if (val.length == 0) {
             return 'Email minimal 5 karakter';
           }
           return null;
@@ -164,10 +165,10 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
           children: [
             _buildEmail(),
             _buildPassword(),
-            SizedBox(height: 5),
-            if (err_msg.isNotEmpty)
+            SizedBox(height: 10),
+            if (eror_message.isNotEmpty)
               Text(
-                'Email dan password telah terdaftar',
+                eror_message,
                 style: TextStyle(
                   color: Colors.red.shade600,
                 ),
@@ -196,7 +197,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
   Future<void> do_signup() async {
     try {
       setState(() {
-        err_msg = '';
+        eror_message = '';
       });
       var email = ctrlEmail.text;
       var pass = ctrlPass.text;
@@ -206,21 +207,8 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
       );
       print('sign up success');
       print(res);
-      showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          content: const Text('Akun berhasil ditambahkan, silakan untuk login'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => myLogin()));
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => FormRegis()));
     } catch (ex) {
       print('exception signup');
       print(ex.runtimeType);
@@ -228,7 +216,7 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         print(ex);
         print(ex.message);
         setState(() {
-          err_msg = ex.message ?? 'kesalahan saat login.';
+          eror_message = ex.message ?? 'kesalahan saat login.';
         });
       }
     }
