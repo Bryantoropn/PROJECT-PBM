@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per4/Makanan/menu.dart';
 import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Home/konfirmasi%20pemesanan.dart';
@@ -172,7 +173,7 @@ class Home extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => konfirmPemesanan()));
+                                    builder: (context) => MyMenu()));
                           },
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),

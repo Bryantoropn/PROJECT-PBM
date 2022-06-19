@@ -45,12 +45,6 @@ class Reservasi extends StatelessWidget {
                     CardReservasi(
                       namaGambar: 'images/RES1.png',
                     ),
-                    CardReservasi(
-                      namaGambar: 'images/RES2.png',
-                    ),
-                    CardReservasi(
-                      namaGambar: 'images/RES4.png',
-                    ),
                   ],
                 )),
 
@@ -58,27 +52,6 @@ class Reservasi extends StatelessWidget {
                 Expanded(
                     child: Column(
                   children: [
-                    Center(
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(40, 0, 40, 00),
-                        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromARGB(255, 197, 197, 197),
-                                blurRadius: 6,
-                                offset: Offset(0, 2))
-                          ],
-                        ),
-                        child: Text('FILTER'),
-                      ),
-                    ),
-                    CardReservasi(
-                      namaGambar: 'images/RES2.png',
-                    ),
                     CardReservasi(
                       namaGambar: 'images/RES4.png',
                     ),
@@ -98,6 +71,7 @@ class Reservasi extends StatelessWidget {
                 children: [
                   // WARP FIRST
                   Container(
+                    padding: EdgeInsets.all(5),
                     margin: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
                     alignment: FractionalOffset.center,
                     child: Wrap(
@@ -112,24 +86,7 @@ class Reservasi extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // BUTTON HERE
-                  Container(
-                    margin: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
-                    height: 40,
-                    width: 180,
-                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 197, 197, 197),
-                          blurRadius: 6,
-                          offset: Offset(0, 2))
-                    ]),
-                    child: Center(
-                      child: Text(
-                        'HERE',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
+                  // BUTTON HER
                 ],
               ),
             )

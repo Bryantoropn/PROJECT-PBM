@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Widget/reservasiMiniCard.dart';
@@ -199,6 +200,24 @@ class _DetailResState extends State<DetailRes> {
                 return Text("loading");
               },
             ),
+            Container(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Stack(
+                    children: <Widget>[
+                      DateTimePicker(
+                        initialValue: '',
+                        firstDate: DateTime(1950),
+                        lastDate: DateTime(2100),
+                        dateLabelText: 'Pilih tanggal reservasi',
+                        validator: (v) {
+                          print(v);
+                          return null;
+                        },
+                        onSaved: (v) => print(v),
+                      )
+                    ],
+                  ),
+            ),
 
             // PESAN OR KERANJANG //
             Row(
@@ -247,42 +266,7 @@ class _DetailResState extends State<DetailRes> {
                   ),
                 ),
               ],
-            ),
-
-            // REVIEW //
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "REVIEW",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        letterSpacing: 2,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontWeight: FontWeight.bold),
-                  ),
-                  widgetReview(
-                    namaUser: "Ardin Nugroho",
-                    isiPesan: "Wah ini tempatnya luas banget",
-                  ),
-                  widgetReview(
-                    namaUser: "Bryantoro saputro",
-                    isiPesan: "Nyaman beut",
-                  ),
-                  widgetReview(
-                    namaUser: "Fadhli Nur",
-                    isiPesan: "Gracias!!",
-                  ),
-                  widgetReview(
-                    namaUser: "Thomas Slebew",
-                    isiPesan: "You 'll never walk alone",
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ),],
         ),
       ),
     );
