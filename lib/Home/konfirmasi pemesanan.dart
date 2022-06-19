@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:per4/Widget/PageAppBar.dart';
 import 'package:per4/map/maps.dart';
 
 class konfirmPemesanan extends StatelessWidget {
-  const konfirmPemesanan({Key? key}) : super(key: key);
+  konfirmPemesanan({Key? key}) : super(key: key);
+  CollectionReference menu = FirebaseFirestore.instance.collection('menu');
+  final String documentId = '1';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,179 +181,252 @@ class konfirmPemesanan extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(left: 15, right: 20),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Container(
-                            child:
-                                Image(image: AssetImage("./image/nasgor.png")),
-                          ),
-                          SizedBox(
-                            width: 14,
-                          ),
-                          Expanded(
-                            child: Container(
-                              color: Colors.transparent,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Nasi Goreng",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "Notes: Kecap sedikit",
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  ButtonTheme(
-                                    minWidth: 14,
-                                    height: 20,
-                                    child: RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        textColor: Colors.black,
-                                        color: Colors.white,
-                                        child: Text(
-                                          "Edit",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        onPressed: () {}),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Text("Rp. 32.000",
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic,
-                                color: Color.fromARGB(255, 255, 89, 37))),
-                        Text("1x", style: TextStyle(fontSize: 12)),
-                        Text(""),
-                        Text(""),
-                        Text(""),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 5),
-                child: Column(
-                  children: [
-                    Divider(
-                      color: Color.fromARGB(255, 196, 196, 196),
-                      height: 5,
-                      thickness: 1,
-                      indent: 1,
-                      endIndent: 10,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 1, right: 9, top: 5),
+              FutureBuilder<DocumentSnapshot>(
+                future: menu.doc(documentId).get(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<DocumentSnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text("Something went wrong");
+                  }
+
+                  if (snapshot.hasData && !snapshot.data!.exists) {
+                    return Text("Document does not exist");
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    Map<String, dynamic> data =
+                        snapshot.data!.data() as Map<String, dynamic>;
+                    return Container(
+                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                         child: Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.only(bottom: 5),
+                              padding: EdgeInsets.only(left: 15, right: 20),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    child: Text("Subtotal"),
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          child: Image(
+                                              image: AssetImage(
+                                                  "./image/nasgor.png")),
+                                        ),
+                                        SizedBox(
+                                          width: 14,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            color: Colors.transparent,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "${data['nama']}",
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  "Notes: Kecap sedikit",
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                ),
+                                                ButtonTheme(
+                                                  minWidth: 14,
+                                                  height: 20,
+                                                  child: RaisedButton(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5)),
+                                                      textColor: Colors.black,
+                                                      color: Colors.white,
+                                                      child: Text(
+                                                        "Edit",
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      onPressed: () {}),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  Container(
-                                      child: Text("Rp. 32.000",
+                                  Column(
+                                    children: [
+                                      Text("Rp. ${data['harga']}",
                                           style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 255, 89, 37),
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
                                               fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.bold))),
+                                              color: Color.fromARGB(
+                                                  255, 255, 89, 37))),
+                                      Text("1x",
+                                          style: TextStyle(fontSize: 12)),
+                                      Text(""),
+                                      Text(""),
+                                      Text(""),
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              padding:
+                                  EdgeInsets.only(left: 20, right: 20, top: 5),
+                              child: Column(
                                 children: [
-                                  Container(
-                                    child: Text("Delivery fee"),
+                                  Divider(
+                                    color: Color.fromARGB(255, 196, 196, 196),
+                                    height: 5,
+                                    thickness: 1,
+                                    indent: 1,
+                                    endIndent: 10,
                                   ),
                                   Container(
-                                      child: Text("Rp. 7.000",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 255, 89, 37),
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.bold))),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(bottom: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    child: Text("Platform fee"),
-                                  ),
-                                  Container(
-                                      child: Text("Rp. 3.000",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 255, 89, 37),
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.bold))),
-                                ],
-                              ),
-                            ),
-                            Divider(
-                              color: Colors.black,
-                              height: 5,
-                              thickness: 1,
-                              indent: 0,
-                              endIndent: 0,
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(top: 10, bottom: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    child: Text("Total"),
-                                  ),
-                                  Container(
-                                      child: Text("Rp. 42.000",
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 255, 89, 37),
-                                              fontStyle: FontStyle.italic,
-                                              fontWeight: FontWeight.bold))),
+                                      padding: EdgeInsets.only(
+                                          left: 1, right: 9, top: 5),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.only(bottom: 5),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  child: Text("Subtotal"),
+                                                ),
+                                                Container(
+                                                    child: Text("Rp. ${data['harga']}",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    89,
+                                                                    37),
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold))),
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  child: Text("Delivery fee"),
+                                                ),
+                                                Container(
+                                                    child: Text("Rp. 7.000",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    89,
+                                                                    37),
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold))),
+                                              ],
+                                            ),
+                                          ),
+                                          Container(
+                                            padding:
+                                                EdgeInsets.only(bottom: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  child: Text("Platform fee"),
+                                                ),
+                                                Container(
+                                                    child: Text("Rp. 3.000",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    89,
+                                                                    37),
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold))),
+                                              ],
+                                            ),
+                                          ),
+                                          Divider(
+                                            color: Colors.black,
+                                            height: 5,
+                                            thickness: 1,
+                                            indent: 0,
+                                            endIndent: 0,
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.only(
+                                                top: 10, bottom: 10),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Container(
+                                                  child: Text("Total"),
+                                                ),
+                                                Container(
+                                                    child: Text("Rp. 42.000",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    89,
+                                                                    37),
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold))),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )),
                                 ],
                               ),
                             ),
                           ],
-                        )),
-                  ],
-                ),
+                        ));
+                  }
+                  return Text("loading");
+                },
               ),
               Container(
                 padding: EdgeInsets.only(left: 20),

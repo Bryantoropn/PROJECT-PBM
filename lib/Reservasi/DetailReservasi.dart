@@ -1,8 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
-import 'package:per4/Home/konfirmasi%20pemesanan.dart';
-import 'package:per4/scanQrPage.dart';
 import 'package:per4/Widget/reservasiMiniCard.dart';
 
 class widgetReview extends StatelessWidget {
@@ -94,16 +92,23 @@ class DetailReservasi extends StatelessWidget {
             ),
             preferredSize: Size.fromHeight(200)),
       ),
-      body: const DetailRes(),
+      body: DetailRes(),
     );
   }
 }
 
-class DetailRes extends StatelessWidget {
-  const DetailRes({Key? key}) : super(key: key);
+class DetailRes extends StatefulWidget {
+  DetailRes({Key? key}) : super(key: key);
 
   @override
+  State<DetailRes> createState() => _DetailResState();
+}
+
+class _DetailResState extends State<DetailRes> {
   Widget build(BuildContext context) {
+    CollectionReference reservasi =
+        FirebaseFirestore.instance.collection('reservasi');
+    final String documentId = '1';
     return SingleChildScrollView(
       child: Container(
         child: Column(
@@ -158,13 +163,41 @@ class DetailRes extends StatelessWidget {
               ),
             ),
 
-            // LOAD MORE //
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-              child: Text(
-                "LOAD MORE",
-                style: TextStyle(letterSpacing: 2),
-              ),
+            FutureBuilder<DocumentSnapshot>(
+              future: reservasi.doc(documentId).get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text("Something went wrong");
+                }
+
+                if (snapshot.hasData && !snapshot.data!.exists) {
+                  return Text("Document does not exist");
+                }
+
+                if (snapshot.connectionState == ConnectionState.done) {
+                  Map<String, dynamic> data =
+                      snapshot.data!.data() as Map<String, dynamic>;
+                  return Container(
+                      margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                      child: Column(
+                        children: [
+                          Text(
+                            data["jenis"],
+                            style: TextStyle(
+                                letterSpacing: 2,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'Price : ${data['harga']}',
+                            style: TextStyle(fontSize: 16),
+                          )
+                        ],
+                      ));
+                }
+                return Text("loading");
+              },
             ),
 
             // PESAN OR KERANJANG //
