@@ -23,8 +23,12 @@ class MyHomePage extends StatelessWidget {
               icon: Icon(Icons.qr_code_2_rounded),
               iconSize: 30,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MyScanQr()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyScanQr(),
+                  ),
+                );
               },
             ),
           ),
@@ -32,8 +36,12 @@ class MyHomePage extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(0, 0, 20, 0),
             child: IconButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MyKeranjang()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyKeranjang(),
+                  ),
+                );
               },
               icon: Icon(Icons.shopping_basket),
               iconSize: 30,
@@ -171,9 +179,11 @@ class Home extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MyMenu()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MyMenu(),
+                              ),
+                            );
                           },
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
@@ -183,21 +193,24 @@ class Home extends StatelessWidget {
                         height: 59,
                         width: 147,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromARGB(255, 197, 197, 197),
-                                  blurRadius: 6,
-                                  offset: Offset(0, 2))
-                            ],
-                            color: Color.fromARGB(255, 236, 246, 255),
-                            image: DecorationImage(
-                                image: AssetImage('image/MenuBestSeller.png'),
-                                fit: BoxFit.cover)),
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 197, 197, 197),
+                              blurRadius: 6,
+                              offset: Offset(0, 2),
+                            )
+                          ],
+                          color: Color.fromARGB(255, 236, 246, 255),
+                          image: DecorationImage(
+                              image: AssetImage('image/MenuBestSeller.png'),
+                              fit: BoxFit.cover),
+                        ),
                         child: InkWell(
                           onTap: () {},
                           customBorder: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
                       ),
                     ],
@@ -245,9 +258,11 @@ class Home extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const MyReservasi()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MyReservasi(),
+                              ),
+                            );
                           },
                           customBorder: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
@@ -306,11 +321,12 @@ class Home extends StatelessWidget {
                                   fit: BoxFit.cover)),
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DetailMakanan()));
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const DetailMakanan(),
+                              //   ),
+                              // );
                             },
                             customBorder: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
@@ -334,11 +350,12 @@ class Home extends StatelessWidget {
                                   fit: BoxFit.cover)),
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DetailMakanan()));
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const DetailMakanan(),
+                              //   ),
+                              // );
                             },
                             customBorder: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
@@ -349,27 +366,32 @@ class Home extends StatelessWidget {
                           height: 47.76,
                           width: 119,
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Color.fromARGB(255, 197, 197, 197),
-                                    blurRadius: 6,
-                                    offset: Offset(0, 2))
-                              ],
-                              color: Color.fromARGB(255, 236, 246, 255),
-                              image: DecorationImage(
-                                  image: AssetImage('image/SoftChocoCream.png'),
-                                  fit: BoxFit.cover)),
+                            borderRadius: BorderRadius.circular(15),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 197, 197, 197),
+                                blurRadius: 6,
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                            color: Color.fromARGB(255, 236, 246, 255),
+                            image: DecorationImage(
+                              image: AssetImage('image/SoftChocoCream.png'),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                           child: InkWell(
                             onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DetailMakanan()));
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => const DetailMakanan(),
+                              //   ),
+                              // );
                             },
                             customBorder: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15)),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                           ),
                         ),
                       ],

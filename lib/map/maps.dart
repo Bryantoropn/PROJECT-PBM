@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:per4/Home/detail%20pemesanan.dart';
@@ -8,7 +9,8 @@ import 'package:per4/map/directions_model.dart';
 import '../Home/keranjang.dart';
 
 class MyMaps extends StatefulWidget {
-  const MyMaps({Key? key}) : super(key: key);
+  const MyMaps({Key? key, required this.doc}) : super(key: key);
+  final QueryDocumentSnapshot doc;
 
   @override
   State<MyMaps> createState() => _MyMapsState();
@@ -18,7 +20,9 @@ class _MyMapsState extends State<MyMaps> {
   static const _initialCameraPosition =
       CameraPosition(target: LatLng(-7.250445, 112.768845), zoom: 15);
 
+  CollectionReference driver = FirebaseFirestore.instance.collection('driver');
   late GoogleMapController _googleMapController;
+  late QueryDocumentSnapshot dataDriver;
   Marker? _origin;
   Marker? _destination;
   Directions? _info;
@@ -27,6 +31,15 @@ class _MyMapsState extends State<MyMaps> {
   void dispose() {
     _googleMapController.dispose();
     super.dispose();
+  }
+
+  Future<QueryDocumentSnapshot> getDriverOrder() async {
+    var data = await driver.get();
+    var data2 = data.docs;
+    dataDriver = data2.firstWhere((docu) {
+      return docu.id == widget.doc['id_driver'];
+    });
+    return dataDriver;
   }
 
   void _addMarker(LatLng pos) async {
@@ -161,9 +174,9 @@ class _MyMapsState extends State<MyMaps> {
               color: Colors.white,
             ),
             width: 380,
-            height: 200,
+            height: 185,
             margin: EdgeInsets.all(10),
-            alignment: Alignment.bottomLeft,
+            alignment: Alignment.bottomCenter,
             child: Column(
               children: [
                 Container(
@@ -179,9 +192,12 @@ class _MyMapsState extends State<MyMaps> {
                       InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DetailPemesanan()));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailPemesanan(doc: widget.doc),
+                            ),
+                          );
                         },
                         child: CircleAvatar(
                           child: Icon(
@@ -197,47 +213,43 @@ class _MyMapsState extends State<MyMaps> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                  padding: EdgeInsets.only(left: 20, bottom: 10),
                   child: Row(
                     children: [
+                      InkWell(
+                        onTap: () {},
+                        child: CircleAvatar(
+                          child: Icon(
+                            Icons.delivery_dining,
+                            size: 24,
+                            color: Colors.white,
+                          ),
+                          backgroundColor: Color.fromARGB(255, 196, 196, 196),
+                          maxRadius: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
                       Expanded(
-                        child: Row(
-                          children: [
-                            InkWell(
-                              onTap: () {},
-                              child: CircleAvatar(
-                                child: Icon(
-                                  Icons.delivery_dining,
-                                  size: 24,
-                                  color: Colors.white,
-                                ),
-                                backgroundColor:
-                                    Color.fromARGB(255, 196, 196, 196),
-                                maxRadius: 20,
+                        child: Container(
+                          color: Colors.transparent,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Driver telah tiba di restoran maems",
+                                style: TextStyle(fontSize: 16),
                               ),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Expanded(
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Driver telah tiba di restoran maems",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    Text("Pesananmu akan tiba dalam 20 menit",
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400)),
-                                  ],
+                              Text(
+                                "Pesananmu akan tiba dalam 20 menit",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -276,28 +288,52 @@ class _MyMapsState extends State<MyMaps> {
                             Expanded(
                               child: Container(
                                 color: Colors.transparent,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Mr. Maemes",
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    Text("Rating",
-                                        style: TextStyle(fontSize: 12)),
-                                    Row(
-                                      children: [
-                                        Text("4,5",
-                                            style: TextStyle(fontSize: 12)),
-                                        Icon(
-                                          Icons.star,
-                                          size: 14,
-                                          color:
-                                              Color.fromARGB(255, 255, 169, 39),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                child: FutureBuilder<QueryDocumentSnapshot>(
+                                  future: getDriverOrder(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            snapshot.data!['nama_driver'],
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          Text(
+                                            snapshot.data!['no_telp'],
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                snapshot.data!['rating'],
+                                                style: TextStyle(fontSize: 12),
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                size: 14,
+                                                color: Color.fromARGB(
+                                                  255,
+                                                  255,
+                                                  169,
+                                                  39,
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      );
+                                    } else {
+                                      return SizedBox(
+                                        height: 25,
+                                        width: 25,
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 ),
                               ),
                             ),

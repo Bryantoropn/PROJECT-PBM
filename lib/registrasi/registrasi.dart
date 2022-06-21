@@ -86,14 +86,14 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         children: [
           Text('Sudah punya akun ?'),
           FlatButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => myLogin()));
-              },
-              child: Text(
-                'Login',
-                style: TextStyle(color: Color.fromARGB(255, 23, 143, 253)),
-              ))
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Login',
+              style: TextStyle(color: Color.fromARGB(255, 23, 143, 253)),
+            ),
+          )
         ],
       ),
     );
@@ -185,11 +185,12 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
       padding: EdgeInsets.only(left: 50, right: 50, top: 10),
       child: TextFormField(
         decoration: InputDecoration(
-            fillColor: Colors.white,
-            filled: true,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-            labelText: 'No.Telp...',
-            hintText: 'Enter your email or no.telp'),
+          fillColor: Colors.white,
+          filled: true,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+          labelText: 'No.Telp...',
+          hintText: 'Enter your email or no.telp',
+        ),
       ),
     );
   }
@@ -208,7 +209,11 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
       print('sign up success');
       print(res);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FormRegis()));
+        context,
+        MaterialPageRoute(
+          builder: (context) => FormRegis(res: res),
+        ),
+      );
     } catch (ex) {
       print('exception signup');
       print(ex.runtimeType);

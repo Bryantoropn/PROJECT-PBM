@@ -24,43 +24,34 @@ class Reservasi extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            // IMAGE RESERVASI + DESKRIPSI //
             Container(
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Color.fromARGB(255, 197, 197, 197),
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ]),
-                child: Image.asset('image/appbarReservasi2.png')),
-
-            // MENU SEBELAH KIRI //
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: Color.fromARGB(255, 197, 197, 197),
+                    blurRadius: 6,
+                    offset: Offset(0, 2))
+              ]),
+              child: Image.asset(
+                'image/appbarReservasi2.png',
+              ),
+            ),
             Row(
               children: [
-                // MENU KIRI //
                 Expanded(
-                    child: Column(
-                  children: [
-                    CardReservasi(
-                      namaGambar: 'images/RES1.png',
-                    ),
-                  ],
-                )),
-
-                // MENU KANAN //
+                  child: CardReservasi(
+                    type: 'Outdoor',
+                    namaGambar: 'images/RES1.png',
+                  ),
+                ),
                 Expanded(
-                    child: Column(
-                  children: [
-                    CardReservasi(
-                      namaGambar: 'images/RES4.png',
-                    ),
-                  ],
-                )),
+                  child: CardReservasi(
+                    type: 'Couple',
+                    namaGambar: 'images/RES4.png',
+                  ),
+                ),
               ],
             ),
-
-            // CUSTOMER SERVICE //
             Container(
               height: 200,
               decoration: BoxDecoration(
@@ -69,7 +60,6 @@ class Reservasi extends StatelessWidget {
                       image: AssetImage('image/mainGradasi.png'))),
               child: Column(
                 children: [
-                  // WARP FIRST
                   Container(
                     padding: EdgeInsets.all(5),
                     margin: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
@@ -86,7 +76,6 @@ class Reservasi extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // BUTTON HER
                 ],
               ),
             )

@@ -374,10 +374,12 @@ class History extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => konfirmPemesanan()));
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => konfirmPemesanan(),
+                      //   ),
+                      // );
                     },
                     child: const Text('OK'),
                   ),

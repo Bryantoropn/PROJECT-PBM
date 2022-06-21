@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import '../Login/login.dart';
 
 class FormRegis extends StatefulWidget {
-  const FormRegis({Key? key}) : super(key: key);
+  const FormRegis({Key? key, required this.res}) : super(key: key);
+  final UserCredential res;
 
   @override
   State<FormRegis> createState() => _FormRegisState();
@@ -17,6 +18,58 @@ class _FormRegisState extends State<FormRegis> {
   var noHp = '';
   var tgllhr = '';
   var createdAt = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    email = widget.res.user!.email!;
+  }
+
+  void _doRegistForm() async {
+    var collection =
+        FirebaseFirestore.instance.collection('user').doc(widget.res.user!.uid);
+    try {
+      var res = await collection.set({
+        'nama': nama,
+        'email': email,
+        'no_telp': noHp,
+        'tgl_lahir': tgllhr,
+        'createdAt': Timestamp.now(),
+      });
+      print('simpan firestore');
+      //print(res);
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          content: const Text(
+            'Akun berhasil ditambahkan, silakan untuk login',
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => myLogin(),
+                  ),
+                );
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Gagal menyimpan'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,7 +93,9 @@ class _FormRegisState extends State<FormRegis> {
                       Text(
                         'MaemsApp',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text('Food and Delivery'),
                     ],
@@ -80,35 +135,7 @@ class _FormRegisState extends State<FormRegis> {
                 ),
                 TextButton(
                   onPressed: () async {
-                    var collection =
-                        FirebaseFirestore.instance.collection('user');
-                    var res = await collection.add({
-                      'nama': nama,
-                      'email': email,
-                      'nohp': noHp,
-                      'tgllhr': tgllhr,
-                      'createdAt' : Timestamp.now()
-                    });
-                    print('simpan firestore');
-                    print(res);
-                    showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        content: const Text(
-                            'Akun berhasil ditambahkan, silakan untuk login'),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => myLogin()));
-                            },
-                            child: const Text('OK'),
-                          ),
-                        ],
-                      ),
-                    );
+                    _doRegistForm();
                   },
                   child: const Text('OK'),
                 ),
@@ -132,10 +159,12 @@ class _FormRegisState extends State<FormRegis> {
         autocorrect: true,
         cursorColor: Colors.red,
         decoration: InputDecoration(
-            hintText: "Masukkan email",
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
-                borderSide: BorderSide(color: Colors.blue))),
+          hintText: "Masukkan email",
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(7)),
+            borderSide: BorderSide(color: Colors.blue),
+          ),
+        ),
         onChanged: (v) {
           email = v;
         },
@@ -176,10 +205,12 @@ class _FormRegisState extends State<FormRegis> {
         autocorrect: true,
         cursorColor: Colors.red,
         decoration: InputDecoration(
-            hintText: "Masukkan noHp",
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
-                borderSide: BorderSide(color: Colors.blue))),
+          hintText: "Masukkan noHp",
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(7)),
+            borderSide: BorderSide(color: Colors.blue),
+          ),
+        ),
         onChanged: (v) {
           noHp = v;
         },
@@ -189,25 +220,26 @@ class _FormRegisState extends State<FormRegis> {
 
   Widget _buildtgllhr() {
     return Container(
-        padding: EdgeInsets.only(left: 30, right: 30),
-        child: Stack(
-          children: <Widget>[
-            DateTimePicker(
-              initialValue: '',
-              firstDate: DateTime(1950),
-              lastDate: DateTime(2100),
-              dateLabelText: 'Pilih tanggal lahir',
-              onChanged: (v) {
-                tgllhr = v;
-              },
-              validator: (v) {
-                print(v);
-                return null;
-              },
-              onSaved: (v) => print(v),
-            )
-          ],
-        ));
+      padding: EdgeInsets.only(left: 30, right: 30),
+      child: Stack(
+        children: <Widget>[
+          DateTimePicker(
+            initialValue: '',
+            firstDate: DateTime(1950),
+            lastDate: DateTime(2100),
+            dateLabelText: 'Pilih tanggal lahir',
+            onChanged: (v) {
+              tgllhr = v;
+            },
+            validator: (v) {
+              print(v);
+              return null;
+            },
+            onSaved: (v) => print(v),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _buildFormRegistrasi() {
@@ -227,5 +259,4 @@ class _FormRegisState extends State<FormRegis> {
       ),
     );
   }
-
 }

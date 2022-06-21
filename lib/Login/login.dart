@@ -85,14 +85,19 @@ class _myLoginState extends State<myLogin> {
         children: [
           Text('Tidak punya akun ?'),
           FlatButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegistrasiPage()));
-              },
-              child: Text(
-                'Daftar Akun',
-                style: TextStyle(color: Color.fromARGB(255, 23, 143, 253)),
-              ))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegistrasiPage(),
+                ),
+              );
+            },
+            child: Text(
+              'Daftar Akun',
+              style: TextStyle(color: Color.fromARGB(255, 23, 143, 253)),
+            ),
+          ),
         ],
       ),
     );

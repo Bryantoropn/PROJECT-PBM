@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Home/konfirmasi%20pemesanan.dart';
@@ -42,23 +43,35 @@ class widgetReview extends StatelessWidget {
 }
 
 class DetailMakanan extends StatelessWidget {
-  const DetailMakanan({Key? key}) : super(key: key);
+  const DetailMakanan(
+      {Key? key, required this.nama, required this.harga, required this.id})
+      : super(key: key);
+  final String nama;
+  final String harga;
+  final String id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 246, 255),
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back)),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+          ),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MyKeranjang()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyKeranjang(),
+                ),
+              );
             },
             icon: Icon(Icons.add_shopping_cart),
             color: Color.fromARGB(255, 255, 252, 252),
@@ -71,32 +84,56 @@ class DetailMakanan extends StatelessWidget {
           child: Container(),
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
-                  './image/nasgor.png',
-                ),
-                fit: BoxFit.cover),
+              image: AssetImage(
+                './image/nasgor.png',
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         bottom: PreferredSize(
-            child: Transform(
-              transform: Matrix4.translationValues(-80.0, -40.0, 0.0),
-              child: Text(
-                'COUPLE',
-                style: TextStyle(
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+          child: Transform(
+            transform: Matrix4.translationValues(-80.0, -40.0, 0.0),
+            child: Text(
+              'COUPLE',
+              style: TextStyle(
+                fontSize: 45,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            preferredSize: Size.fromHeight(200)),
+          ),
+          preferredSize: Size.fromHeight(200),
+        ),
       ),
-      body: const DetailRes(),
+      body: DetailRes(
+        nama: nama,
+        harga: harga,
+        id: id,
+      ),
     );
   }
 }
 
 class DetailRes extends StatelessWidget {
-  const DetailRes({Key? key}) : super(key: key);
+  const DetailRes({
+    Key? key,
+    required this.nama,
+    required this.harga,
+    required this.id,
+  }) : super(key: key);
+  final String nama;
+  final String harga;
+  final String id;
+
+  String convertToIdr(dynamic number, int decimalDigit) {
+    NumberFormat currencyFormatter = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp',
+      decimalDigits: decimalDigit,
+    );
+    return currencyFormatter.format(int.tryParse(number));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +142,6 @@ class DetailRes extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             // GAMBAR //
             Container(
               padding: EdgeInsetsDirectional.all(20),
@@ -115,7 +151,7 @@ class DetailRes extends StatelessWidget {
                   Container(
                     margin: EdgeInsetsDirectional.all(10),
                     child: Text(
-                      "Nasi Goreng",
+                      nama,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -130,7 +166,7 @@ class DetailRes extends StatelessWidget {
                           width: 80,
                           decoration: BoxDecoration(color: Colors.white),
                           child: Text(
-                            "Rp. 32.000",
+                            convertToIdr(harga, 0),
                             textAlign: TextAlign.center,
                           ),
                         )
@@ -141,7 +177,12 @@ class DetailRes extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 50, right: 50, top: 20, bottom: 20),
+              padding: EdgeInsets.only(
+                left: 50,
+                right: 50,
+                top: 20,
+                bottom: 20,
+              ),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -152,11 +193,17 @@ class DetailRes extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => konfirmPemesanan()));
-                          },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => konfirmPemesanan(
+                        nama: nama,
+                        harga: int.tryParse(harga) ?? 0,
+                        id: id,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Container(
@@ -167,9 +214,10 @@ class DetailRes extends StatelessWidget {
                     "REVIEW",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        letterSpacing: 2,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontWeight: FontWeight.bold),
+                      letterSpacing: 2,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   widgetReview(
                     namaUser: "Adi",

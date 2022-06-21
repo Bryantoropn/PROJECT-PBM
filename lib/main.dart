@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:per4/NavBar.dart';
 import 'Login/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,9 +14,21 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: myLogin(),
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          print(snapshot.data);
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: (snapshot.data != null) ? BottomWidget() : myLogin(),
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 }

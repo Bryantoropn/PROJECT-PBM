@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:per4/Home/home.dart';
 import 'package:per4/NavBarHome.dart';
 import 'package:per4/Widget/PageAppBar.dart';
@@ -10,21 +12,46 @@ import '../Login/login.dart';
 import 'keranjang.dart';
 
 class DetailPemesanan extends StatelessWidget {
-  const DetailPemesanan({Key? key}) : super(key: key);
+  const DetailPemesanan({Key? key, required this.doc}) : super(key: key);
+  final QueryDocumentSnapshot doc;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PageAppBar(), 
-      body: Profile(),
+      appBar: PageAppBar(),
+      body: Profile(doc: doc),
     );
   }
 }
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+  Profile({Key? key, required this.doc}) : super(key: key);
+
+  final QueryDocumentSnapshot doc;
+  CollectionReference driver = FirebaseFirestore.instance.collection('driver');
+  late QueryDocumentSnapshot dataDriver;
+
+  Future<QueryDocumentSnapshot> getDriverOrder() async {
+    var data = await driver.get();
+    var data2 = data.docs;
+    dataDriver = data2.firstWhere((docu) {
+      return docu.id == doc['id_driver'];
+    });
+    return dataDriver;
+  }
+
+  String convertToIdr(dynamic number, int decimalDigit) {
+    NumberFormat currencyFormatter = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp',
+      decimalDigits: decimalDigit,
+    );
+    return currencyFormatter.format(int.tryParse(number));
+  }
 
   @override
   Widget build(BuildContext context) {
+    var subtotal =
+        convertToIdr((int.tryParse(doc['total'])! - 14000).toString(), 0);
     return SingleChildScrollView(
         child: Column(
       children: [
@@ -39,10 +66,7 @@ class Profile extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MyMaps()));
+                  Navigator.pop(context);
                 },
                 child: CircleAvatar(
                   child: Icon(
@@ -61,39 +85,37 @@ class Profile extends StatelessWidget {
           padding: EdgeInsets.only(left: 20, right: 20, bottom: 10),
           child: Row(
             children: [
+              CircleAvatar(
+                child: Icon(
+                  Icons.delivery_dining,
+                  size: 24,
+                  color: Colors.white,
+                ),
+                backgroundColor: Color.fromARGB(255, 196, 196, 196),
+                maxRadius: 20,
+              ),
+              SizedBox(
+                width: 16,
+              ),
               Expanded(
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      child: Icon(
-                        Icons.delivery_dining,
-                        size: 24,
-                        color: Colors.white,
+                child: Container(
+                  color: Colors.transparent,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Driver telah tiba di restoran maems",
+                        style: TextStyle(fontSize: 16),
                       ),
-                      backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                      maxRadius: 20,
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.transparent,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Driver telah tiba di restoran maems",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Text("Pesananmu akan tiba dalam 20 menit",
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w400)),
-                          ],
+                      Text(
+                        "Pesananmu akan tiba dalam 20 menit",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -128,25 +150,51 @@ class Profile extends StatelessWidget {
                     Expanded(
                       child: Container(
                         color: Colors.transparent,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Mr. Maemes",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            Text("Rating", style: TextStyle(fontSize: 12)),
-                            Row(
-                              children: [
-                                Text("4,5", style: TextStyle(fontSize: 12)),
-                                Icon(
-                                  Icons.star,
-                                  size: 14,
-                                  color: Color.fromARGB(255, 255, 169, 39),
-                                )
-                              ],
-                            )
-                          ],
+                        child: FutureBuilder<QueryDocumentSnapshot>(
+                          future: getDriverOrder(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    snapshot.data!['nama_driver'],
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  Text(
+                                    snapshot.data!['no_telp'],
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        snapshot.data!['rating'],
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        size: 14,
+                                        color: Color.fromARGB(
+                                          255,
+                                          255,
+                                          169,
+                                          39,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              );
+                            } else {
+                              return SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                              );
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -303,10 +351,12 @@ class Profile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Nasi Goreng",
+                doc['nama_makanan'],
                 style: TextStyle(fontSize: 14),
               ),
-              Text("1x")
+              Text(
+                '${doc['banyak']}x',
+              ),
             ],
           ),
         ),
@@ -332,10 +382,14 @@ class Profile extends StatelessWidget {
                               child: Text("Subtotal"),
                             ),
                             Container(
-                                child: Text("Rp. 32.000",
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold))),
+                              child: Text(
+                                subtotal,
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -364,7 +418,7 @@ class Profile extends StatelessWidget {
                               child: Text("Platform fee"),
                             ),
                             Container(
-                                child: Text("Rp. 3.000",
+                                child: Text("Rp. 7.000",
                                     style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         fontWeight: FontWeight.bold))),
@@ -387,7 +441,7 @@ class Profile extends StatelessWidget {
                               child: Text("Total"),
                             ),
                             Container(
-                                child: Text("Rp. 42.000",
+                                child: Text(convertToIdr(doc['total'], 0),
                                     style: TextStyle(
                                         fontStyle: FontStyle.italic,
                                         fontWeight: FontWeight.bold))),
