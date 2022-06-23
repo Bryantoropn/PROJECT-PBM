@@ -13,17 +13,18 @@ class FormRegis extends StatefulWidget {
 }
 
 class _FormRegisState extends State<FormRegis> {
-  var nama = '';
-  var email = '';
-  var noHp = '';
-  var tgllhr = '';
-  var createdAt = '';
+  TextEditingController nama = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController noHp = TextEditingController();
+  TextEditingController tgllhr = TextEditingController();
+  TextEditingController alamat = TextEditingController();
+  TextEditingController createdAt = TextEditingController();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    email = widget.res.user!.email!;
+    email.text = widget.res.user!.email!;
   }
 
   void _doRegistForm() async {
@@ -31,10 +32,11 @@ class _FormRegisState extends State<FormRegis> {
         FirebaseFirestore.instance.collection('user').doc(widget.res.user!.uid);
     try {
       var res = await collection.set({
-        'nama': nama,
-        'email': email,
-        'no_telp': noHp,
-        'tgl_lahir': tgllhr,
+        'nama': nama.text,
+        'email': email.text,
+        'no_telp': noHp.text,
+        'alamat': alamat.text,
+        'tgl_lahir': tgllhr.text,
         'createdAt': Timestamp.now(),
       });
       print('simpan firestore');
@@ -49,11 +51,12 @@ class _FormRegisState extends State<FormRegis> {
             TextButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.pushReplacement(
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                     builder: (context) => myLogin(),
                   ),
+                  (route) => false,
                 );
               },
               child: const Text('OK'),
@@ -165,9 +168,7 @@ class _FormRegisState extends State<FormRegis> {
             borderSide: BorderSide(color: Colors.blue),
           ),
         ),
-        onChanged: (v) {
-          email = v;
-        },
+        controller: email,
       ),
     );
   }
@@ -188,9 +189,7 @@ class _FormRegisState extends State<FormRegis> {
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(7)),
                   borderSide: BorderSide(color: Colors.blue))),
-          onChanged: (v) {
-            nama = v;
-          },
+          controller: nama,
         ));
   }
 
@@ -211,11 +210,29 @@ class _FormRegisState extends State<FormRegis> {
             borderSide: BorderSide(color: Colors.blue),
           ),
         ),
-        onChanged: (v) {
-          noHp = v;
-        },
+        controller: noHp,
       ),
     );
+  }
+
+  Widget _buildAlamat() {
+    return Container(
+        padding: EdgeInsets.only(left: 30, right: 30),
+        child: TextFormField(
+          maxLength: 25,
+          style: TextStyle(color: Colors.black),
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.done,
+          obscureText: false,
+          autocorrect: true,
+          cursorColor: Colors.red,
+          decoration: InputDecoration(
+              hintText: "Masukkan Alamat",
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(7)),
+                  borderSide: BorderSide(color: Colors.blue))),
+          controller: alamat,
+        ));
   }
 
   Widget _buildtgllhr() {
@@ -224,13 +241,10 @@ class _FormRegisState extends State<FormRegis> {
       child: Stack(
         children: <Widget>[
           DateTimePicker(
-            initialValue: '',
             firstDate: DateTime(1950),
             lastDate: DateTime(2100),
             dateLabelText: 'Pilih tanggal lahir',
-            onChanged: (v) {
-              tgllhr = v;
-            },
+            controller: tgllhr,
             validator: (v) {
               print(v);
               return null;
@@ -252,6 +266,7 @@ class _FormRegisState extends State<FormRegis> {
             _buildNama(),
             _buildEmail(),
             _buildNoHp(),
+            _buildAlamat(),
             _buildtgllhr(),
             _buildBtn(),
           ],

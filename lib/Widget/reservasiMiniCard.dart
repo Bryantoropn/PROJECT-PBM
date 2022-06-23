@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:per4/Home/keranjang.dart';
-import 'package:per4/NavBar.dart';
 import 'package:per4/Reservasi/DetailReservasi.dart';
 
 class CardReservasi extends StatelessWidget {

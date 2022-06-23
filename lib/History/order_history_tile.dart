@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 
 class OrderHistoryTile extends StatelessWidget {
@@ -67,38 +65,6 @@ class OrderHistoryTile extends StatelessWidget {
               ),
             ),
           ),
-          // Column(
-          //   children: [
-          //     Text(
-          //       "TOTAL: HARGA",
-          //       style: TextStyle(
-          //         fontSize: 16,
-          //         fontWeight: FontWeight.bold,
-          //         fontStyle: FontStyle.italic,
-          //         color: Color.fromARGB(255, 255, 89, 37),
-          //       ),
-          //     ),
-          //     Text(""),
-          //     ButtonTheme(
-          //       minWidth: 14,
-          //       height: 20,
-          //       child: RaisedButton(
-          //         shape: RoundedRectangleBorder(
-          //             borderRadius: BorderRadius.circular(10)),
-          //         textColor: Colors.black,
-          //         color: Colors.white,
-          //         child: Text(
-          //           "Reorder",
-          //           style: TextStyle(
-          //             fontSize: 12,
-          //             fontWeight: FontWeight.bold,
-          //           ),
-          //         ),
-          //         onPressed: () {},
-          //       ),
-          //     )
-          //   ],
-          // )
         ],
       ),
     );

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:per4/map/maps.dart';
 import 'package:simple_shadow/simple_shadow.dart';
-import '../Widget/PageAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Home/keranjang.dart';
 import 'order_history_tile.dart';
@@ -16,15 +15,6 @@ class MyHistory extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_new_rounded,
-              color: Colors.black,
-            ),
-          ),
           backgroundColor: Color.fromARGB(255, 247, 246, 255),
           centerTitle: true,
           title: Row(
@@ -76,8 +66,6 @@ class _HistoryState extends State<History> {
       FirebaseFirestore.instance.collection('pemesanan_makanan');
   CollectionReference reservasi =
       FirebaseFirestore.instance.collection('pemesanan_reservasi');
-  // CollectionReference driver =
-  //     FirebaseFirestore.instance.collection('driver');
   var id = FirebaseAuth.instance.currentUser!.uid;
 
   @override
@@ -102,7 +90,7 @@ class _HistoryState extends State<History> {
                     if (snapshot.hasData) {
                       if (snapshot.data!.docs.isEmpty) {
                         return Center(
-                          child: Text("No History"),
+                          child: Text("\n\n\n\n\n\nNo History"),
                         );
                       } else {
                         var data = snapshot.data!.docs;
@@ -158,7 +146,7 @@ class _HistoryState extends State<History> {
                     if (snapshot.hasData) {
                       if (snapshot.data!.docs.isEmpty) {
                         return Center(
-                          child: Text("No History"),
+                          child: Text("\n\n\n\n\n\nNo History"),
                         );
                       } else {
                         var data = snapshot.data!.docs;
@@ -186,49 +174,5 @@ class _HistoryState extends State<History> {
         ),
       ],
     );
-    // return Padding(
-    //   padding: const EdgeInsets.all(10.0),
-    //   child: Column(
-    //     //mainAxisSize: MainAxisSize.min,
-    //     children: [
-    //       Align(
-    //         alignment: Alignment.topLeft,
-    //         child: Text(
-    //           "This Month",
-    //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-    //         ),
-    //       ),
-    //       StreamBuilder<QuerySnapshot>(
-    //         stream: menu.where('id_user', isEqualTo: id).snapshots(),
-    //         builder: (context, snapshot) {
-    //           if (snapshot.hasData) {
-    //             if (snapshot.data!.docs.isEmpty) {
-    //               return Center(
-    //                 child: Text("No History"),
-    //               );
-    //             } else {
-    //               var data = snapshot.data!.docs;
-    //               return ListView(
-    //                 shrinkWrap: true,
-    //                 children: data.map((doc) {
-    //                   return HistoryTile(
-    //                     nama: doc['nama_makanan'],
-    //                     total: doc['total'],
-    //                   );
-    //                 }).toList(),
-    //               );
-    //             }
-    //           } else if (snapshot.hasError) {
-    //             return Text("${snapshot.error}");
-    //           } else {
-    //             return Center(
-    //               child: CircularProgressIndicator(),
-    //             );
-    //           }
-    //         },
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

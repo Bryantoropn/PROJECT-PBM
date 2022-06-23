@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:per4/Makanan/detailMakanan.dart';
 import 'package:per4/Makanan/makanan_tile.dart';
 import '../Widget/PageAppBar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../Home/keranjang.dart';
 
 class MyMenu extends StatelessWidget {
   const MyMenu({Key? key}) : super(key: key);
@@ -27,30 +25,37 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
-      child: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('makanan').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var data = snapshot.data!.docs;
-            return ListView(
-              children: data.map((doc) {
-                return MakananTile(
-                  nama: doc['nama_makanan'],
-                  harga: doc['harga'],
-                  rating: doc['rating'],
-                  id: doc.id,
-                );
-              }).toList(),
-            );
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+      margin: EdgeInsets.all(15),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('makanan').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  var data = snapshot.data!.docs;
+                  return Column(
+                    children: data.map((doc) {
+                      return MakananTile(
+                        nama: doc['nama_makanan'],
+                        harga: doc['harga'],
+                        rating: doc['rating'],
+                        id: doc.id,
+                      );
+                    }).toList(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("${snapshot.error}");
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

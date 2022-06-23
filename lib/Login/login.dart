@@ -199,9 +199,15 @@ class _myLoginState extends State<myLogin> {
 
       print('hasil login:');
       print(res);
-      Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return BottomWidget();
-      }));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (_) {
+            return BottomWidget();
+          },
+        ),
+        (route) => false,
+      );
     } catch (ex) {
       print('exception login');
       print(ex.runtimeType);

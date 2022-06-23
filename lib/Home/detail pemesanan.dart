@@ -1,15 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:per4/Home/home.dart';
-import 'package:per4/NavBarHome.dart';
 import 'package:per4/Widget/PageAppBar.dart';
-import 'package:per4/Profile/editProfile.dart';
-import 'package:per4/Profile/Top%20Up/topUp.dart';
-import 'package:per4/map/maps.dart';
-import '../Profile/feedback.dart';
-import '../Login/login.dart';
-import 'keranjang.dart';
+import '../NavBar.dart';
 
 class DetailPemesanan extends StatelessWidget {
   const DetailPemesanan({Key? key, required this.doc}) : super(key: key);
@@ -318,7 +311,7 @@ class Profile extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w400)),
                             Text(
-                              "Jl. Pattimura no 2",
+                              doc['alamat'],
                               style: TextStyle(fontSize: 16),
                             ),
                           ],
@@ -441,10 +434,14 @@ class Profile extends StatelessWidget {
                               child: Text("Total"),
                             ),
                             Container(
-                                child: Text(convertToIdr(doc['total'], 0),
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold))),
+                              child: Text(
+                                convertToIdr(doc['total'], 0),
+                                style: TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -474,11 +471,13 @@ class Profile extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          BottomWidgetHome()));
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BottomWidget(),
+                                ),
+                                (route) => false,
+                              );
                             },
                             child: const Text('OK'),
                           ),

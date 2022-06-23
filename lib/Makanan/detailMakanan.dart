@@ -1,10 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:per4/Reservasi/Reservasi.dart';
 import 'package:per4/Home/keranjang.dart';
 import 'package:per4/Home/konfirmasi%20pemesanan.dart';
-import 'package:per4/scanQrPage.dart';
-import 'package:per4/Widget/reservasiMiniCard.dart';
 
 class widgetReview extends StatelessWidget {
   final namaUser;
@@ -95,7 +94,7 @@ class DetailMakanan extends StatelessWidget {
           child: Transform(
             transform: Matrix4.translationValues(-80.0, -40.0, 0.0),
             child: Text(
-              'COUPLE',
+              nama,
               style: TextStyle(
                 fontSize: 45,
                 fontWeight: FontWeight.bold,
@@ -115,8 +114,8 @@ class DetailMakanan extends StatelessWidget {
   }
 }
 
-class DetailRes extends StatelessWidget {
-  const DetailRes({
+class DetailRes extends StatefulWidget {
+  DetailRes({
     Key? key,
     required this.nama,
     required this.harga,
@@ -125,6 +124,18 @@ class DetailRes extends StatelessWidget {
   final String nama;
   final String harga;
   final String id;
+
+  @override
+  State<DetailRes> createState() => _DetailResState();
+}
+
+class _DetailResState extends State<DetailRes> {
+  var isAdding = false;
+
+  final keranjang = FirebaseFirestore.instance
+      .collection("keranjang")
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection("list");
 
   String convertToIdr(dynamic number, int decimalDigit) {
     NumberFormat currencyFormatter = NumberFormat.currency(
@@ -137,6 +148,41 @@ class DetailRes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> addKeranjang() async {
+      setState(() {
+        isAdding = true;
+      });
+      try {
+        var getdata = await keranjang.doc(widget.id).get();
+        if (getdata.exists) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Makanan sudah ada di keranjang"),
+            ),
+          );
+        } else {
+          await keranjang.doc(widget.id).set({
+            'nama_makanan': widget.nama,
+            'harga': widget.harga,
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Makanan ditambahkan ke keranjang"),
+            ),
+          );
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
+      setState(() {
+        isAdding = false;
+      });
+    }
+
     return SingleChildScrollView(
       child: Container(
         child: Column(
@@ -151,8 +197,8 @@ class DetailRes extends StatelessWidget {
                   Container(
                     margin: EdgeInsetsDirectional.all(10),
                     child: Text(
-                      nama,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      widget.nama,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                   ),
 
@@ -164,10 +210,10 @@ class DetailRes extends StatelessWidget {
                         Container(
                           height: 20,
                           width: 80,
-                          decoration: BoxDecoration(color: Colors.white),
                           child: Text(
-                            convertToIdr(harga, 0),
+                            convertToIdr(widget.harga, 0),
                             textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                         )
                       ],
@@ -176,37 +222,59 @@ class DetailRes extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(
-                left: 50,
-                right: 50,
-                top: 20,
-                bottom: 20,
-              ),
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                textColor: Colors.white,
-                color: Color.fromARGB(255, 255, 89, 37),
-                child: Text(
-                  "Pesan",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => konfirmPemesanan(
-                        nama: nama,
-                        harga: int.tryParse(harga) ?? 0,
-                        id: id,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  textColor: Colors.white,
+                  color: Color.fromARGB(255, 255, 89, 37),
+                  child: Text(
+                    "Pesan",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => konfirmPemesanan(
+                          nama: widget.nama,
+                          harga: int.tryParse(widget.harga) ?? 0,
+                          id: widget.id,
+                        ),
                       ),
-                    ),
-                  );
-                },
-              ),
+                    );
+                  },
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  textColor: Colors.white,
+                  color: Colors.blueGrey,
+                  child: (isAdding)
+                      ? SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text(
+                          "Tambah ke Keranjang",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                  onPressed: () async {
+                    addKeranjang();
+                  },
+                ),
+              ],
             ),
             Container(
+              margin: EdgeInsets.only(top: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

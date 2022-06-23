@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:per4/Profile/editProfile.dart';
-import 'package:per4/Profile/Top%20Up/topUp.dart';
-import 'package:per4/Widget/PageAppBar.dart';
+import 'package:simple_shadow/simple_shadow.dart';
+import '../Home/keranjang.dart';
 import 'feedback.dart';
 import '../Login/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +18,32 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PageAppBar(),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 247, 246, 255),
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SimpleShadow(
+              child: Image.asset('image/maems.png'),
+              opacity: 0.6,
+              color: Color.fromARGB(255, 67, 67, 67),
+              offset: Offset(0, 3),
+              sigma: 2,
+            )
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyKeranjang()));
+            },
+            icon: Icon(Icons.add_shopping_cart),
+            color: Colors.black,
+          )
+        ],
+      ),
       body: Profile(),
     );
   }
@@ -53,13 +78,6 @@ class _ProfileState extends State<Profile> {
                 Expanded(
                   child: Row(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 196, 196, 196),
-                        maxRadius: 25,
-                      ),
-                      SizedBox(
-                        width: 16,
-                      ),
                       StreamBuilder<DocumentSnapshot>(
                         stream: users.doc(documentId).snapshots(),
                         builder: (context, snapshot) {
@@ -132,93 +150,12 @@ class _ProfileState extends State<Profile> {
                             email: userData['email'],
                             no_telp: userData['no_telp'],
                             tgl_lahir: userData['tgl_lahir'],
+                            alamat: userData['alamat'],
                           ),
                         ),
                       );
                     },
                   ),
-                )
-              ],
-            ),
-          ),
-          Divider(
-            color: Color.fromARGB(255, 196, 196, 196),
-            height: 5,
-            thickness: 1,
-            indent: 12,
-            endIndent: 10,
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 10, right: 10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Expanded(
-                        child: Container(
-                          color: Colors.transparent,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Saldo",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "Rp. 50.000",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Color.fromARGB(255, 255, 89, 37),
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.qr_code,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {},
-                    ),
-                    ButtonTheme(
-                      minWidth: 14,
-                      height: 20,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        textColor: Colors.black,
-                        color: Colors.white,
-                        child: Text(
-                          "Top Up",
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.bold),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => myTopUp(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
                 )
               ],
             ),

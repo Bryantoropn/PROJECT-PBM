@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../Login/login.dart';
+import 'package:flutter/services.dart';
 import 'form_registrasi.dart';
+import 'package:path_provider/path_provider.dart';
 
 class RegistrasiPage extends StatefulWidget {
   const RegistrasiPage({Key? key}) : super(key: key);
@@ -13,9 +16,61 @@ class RegistrasiPage extends StatefulWidget {
 class _RegistrasiPageState extends State<RegistrasiPage> {
   var show_password = false;
   var eror_message = '';
+  var isSigningUp = false;
   var ctrlEmail = TextEditingController();
   var ctrlPass = TextEditingController();
   var formkey = GlobalKey<FormState>();
+
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('image/$path');
+
+    final file = File('${(await getTemporaryDirectory()).path}/$path');
+    await file.create(recursive: true);
+    await file.writeAsBytes(byteData.buffer
+        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    var pathOld = file.path;
+    var lastSeparator = pathOld.lastIndexOf(Platform.pathSeparator);
+    var newPath = pathOld.substring(0, lastSeparator + 1) +
+        FirebaseAuth.instance.currentUser!.uid;
+
+    return file.rename(newPath);
+  }
+
+  Future<void> do_signup() async {
+    try {
+      setState(() {
+        eror_message = '';
+        isSigningUp = true;
+      });
+      var email = ctrlEmail.text;
+      var pass = ctrlPass.text;
+      var res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: pass,
+      );
+      print('sign up success');
+      print(res);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => FormRegis(res: res),
+        ),
+      );
+    } catch (ex) {
+      print('exception signup');
+      print(ex.runtimeType);
+      if (ex is FirebaseAuthException) {
+        print(ex);
+        print(ex.message);
+        setState(() {
+          eror_message = ex.message ?? 'kesalahan saat login.';
+          isSigningUp = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,10 +117,18 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         textColor: Colors.white,
         color: Color.fromARGB(255, 255, 89, 37),
-        child: Text(
-          "Register",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        child: (isSigningUp)
+            ? SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              )
+            : Text(
+                "Register",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
         onPressed: () => {
           if (formkey.currentState != null)
             {
@@ -193,37 +256,5 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
         ),
       ),
     );
-  }
-
-  Future<void> do_signup() async {
-    try {
-      setState(() {
-        eror_message = '';
-      });
-      var email = ctrlEmail.text;
-      var pass = ctrlPass.text;
-      var res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: pass,
-      );
-      print('sign up success');
-      print(res);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => FormRegis(res: res),
-        ),
-      );
-    } catch (ex) {
-      print('exception signup');
-      print(ex.runtimeType);
-      if (ex is FirebaseAuthException) {
-        print(ex);
-        print(ex.message);
-        setState(() {
-          eror_message = ex.message ?? 'kesalahan saat login.';
-        });
-      }
-    }
   }
 }
