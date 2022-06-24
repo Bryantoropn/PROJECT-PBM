@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'form_registrasi.dart';
-import 'package:path_provider/path_provider.dart';
 
 class RegistrasiPage extends StatefulWidget {
   const RegistrasiPage({Key? key}) : super(key: key);
@@ -20,22 +16,6 @@ class _RegistrasiPageState extends State<RegistrasiPage> {
   var ctrlEmail = TextEditingController();
   var ctrlPass = TextEditingController();
   var formkey = GlobalKey<FormState>();
-
-  Future<File> getImageFileFromAssets(String path) async {
-    final byteData = await rootBundle.load('image/$path');
-
-    final file = File('${(await getTemporaryDirectory()).path}/$path');
-    await file.create(recursive: true);
-    await file.writeAsBytes(byteData.buffer
-        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-    var pathOld = file.path;
-    var lastSeparator = pathOld.lastIndexOf(Platform.pathSeparator);
-    var newPath = pathOld.substring(0, lastSeparator + 1) +
-        FirebaseAuth.instance.currentUser!.uid;
-
-    return file.rename(newPath);
-  }
 
   Future<void> do_signup() async {
     try {

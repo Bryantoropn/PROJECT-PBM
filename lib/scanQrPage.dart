@@ -36,29 +36,6 @@ class _MyScanQrState extends State<MyScanQr> {
               }),
           //     child: Center(
           //   child: Text(text),)
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 100,
-              child: Center(
-                child: IconButton(
-                  onPressed: () async {},
-                  icon: Icon(Icons.camera),
-                  iconSize: 50,
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 247, 246, 255),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      blurRadius: 6,
-                      offset: Offset(0, 2))
-                ],
-              ),
-              // decoration: BoxDecoration(),
-            ),
-          )
         ],
       ),
     );
